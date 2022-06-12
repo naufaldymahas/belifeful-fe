@@ -8,6 +8,8 @@ import MailIcon from '@assets/images/mail_icon.png';
 import { RegisterOTPForm, RegisterOTPInput } from './Register.step2.style';
 import { RegisterActionType, useRegisterContext } from '@contexts/Register';
 import { useEffect, useMemo, useState } from 'react';
+import CorrectIcon from '@assets/images/correct_icon.png';
+import WrongIcon from '@assets/images/wrong_icon.png';
 
 export const RegisterYellowStep2 = () => {
   return (
@@ -257,13 +259,7 @@ export const RegisterWhiteStep2b = () => {
             >
               {isFailed === 1 ? 'Verifikasi berhasil' : 'Kode OTP salah'}
             </Span>
-            <img
-              src={
-                isFailed === 1
-                  ? '/src/assets/images/correct_icon.png'
-                  : '/src/assets/images/wrong_icon.png'
-              }
-            />
+            <img src={isFailed === 1 ? CorrectIcon : WrongIcon} />
           </Flex>
         )}
         {count > 0 ? (

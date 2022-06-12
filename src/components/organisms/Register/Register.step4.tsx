@@ -12,6 +12,7 @@ import {
 import { RegisterActionType, useRegisterContext } from '@contexts/Register';
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import CorrectIcon from '@assets/images/correct_icon.png';
 
 export const RegisterYellowStep4 = () => {
   return (
@@ -301,7 +302,7 @@ export const RegisterWhiteStep4b = () => {
           </Span>
           <img
             style={{ width: 'auto', height: '20px', marginLeft: '1rem' }}
-            src='/src/assets/images/correct_icon.png'
+            src={CorrectIcon}
           />
         </Flex>
       </Card>

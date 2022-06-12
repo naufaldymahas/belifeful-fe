@@ -6,6 +6,7 @@ import { LoginContextWrapper, useLoginContext } from '@contexts/Login';
 import { AuthLayout } from '@layouts/Auth.layout';
 import { ColorThemeEnum, FontWeightEnum } from '@styles/Theme';
 import { LoginYellowWrapper } from './Login.style';
+import LoginImage from '@assets/images/login.png';
 
 const Login = () => {
   return (
@@ -16,7 +17,7 @@ const Login = () => {
             <FlexItem>
               <img
                 style={{ width: '100%', height: 'auto', marginLeft: '-1rem' }}
-                src='/src/assets/images/login.png'
+                src={LoginImage}
               />
             </FlexItem>
             <FlexItem style={{ textAlign: 'center', marginLeft: '-1rem' }}>

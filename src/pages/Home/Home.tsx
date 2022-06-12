@@ -7,6 +7,7 @@ import Navbar from '@components/Navbar';
 import { ColorThemeEnum, FontWeightEnum } from '@styles/Theme';
 import { useNavigate } from 'react-router';
 import { BodyContainer1 } from './Home.style';
+import ParentingImage from '@assets/images/parenting.png';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -47,10 +48,7 @@ const Home = () => {
           </Button>
         </FlexItem>
         <FlexItem size='50'>
-          <img
-            style={{ width: '100%', height: 'auto' }}
-            src='/src/assets/images/parenting.png'
-          />
+          <img style={{ width: '100%', height: 'auto' }} src={ParentingImage} />
         </FlexItem>
       </BodyContainer1>
     </div>
