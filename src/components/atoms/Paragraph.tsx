@@ -5,6 +5,8 @@ type ParagraphProps = {
   variant?: ColorThemeEnum;
   weight?: FontWeightEnum;
   fs?: 'default' | '1' | '2' | '3' | '4' | '5' | '6';
+  italic?: boolean;
+  center?: boolean;
 };
 
 export const Paragraph = styled.p<ParagraphProps>`
@@ -12,4 +14,6 @@ export const Paragraph = styled.p<ParagraphProps>`
   font-weight: ${({ weight }) => (weight ? weight : 'inherit')};
   color: ${({ variant, theme }) =>
     variant ? theme.colors[variant] : 'inherit'};
+  ${({ italic }) => italic && 'font-style: italic;'}
+  ${({ center }) => center && 'text-align: center;'}
 `;

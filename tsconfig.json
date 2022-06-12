@@ -29,6 +29,19 @@
       ],
       "@styles/*": [
         "src/styles/*"
+      ],
+      "@routes/*": [
+        "src/routes/*"
+      ],
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
+      "@pages/*": [
+        "src/pages/*"
+      ]
+      ,
+      "@contexts/*": [
+        "src/contexts/*"
       ]
     }
   },

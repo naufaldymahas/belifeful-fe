@@ -12,6 +12,7 @@ declare module 'styled-components' {
       '4': '1.938rem';
       '5': '1.563rem';
       '6': '1.25rem';
+      '7': '0.8rem';
     };
     fontWeight: IFontWeight;
     fontFamily: `'Nunito', sans-serif`;

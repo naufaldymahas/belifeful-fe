@@ -4,10 +4,23 @@ type FlexItemProps = {
   size?: string;
 };
 
-export const Flex = styled.div`
+type FlexProps = {
+  justifyContent?:
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly'
+    | 'center'
+    | 'normal';
+  block?: boolean;
+};
+
+export const Flex = styled.div<FlexProps>`
   display: flex;
+  ${({ justifyContent }) =>
+    justifyContent && `justify-content: ${justifyContent};`}
+  ${({ block }) => block && `width: 100%;`}
 `;
 
 export const FlexItem = styled.div<FlexItemProps>`
-  width: ${({ size }) => (size ? size : '100')};
+  width: ${({ size }) => (size ? size : '100')}%;
 `;

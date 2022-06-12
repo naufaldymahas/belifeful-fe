@@ -5,20 +5,22 @@ import { Paragraph } from '@components/atoms/Paragraph';
 import { Span } from '@components/atoms/Span';
 import Navbar from '@components/Navbar';
 import { ColorThemeEnum, FontWeightEnum } from '@styles/Theme';
+import { useNavigate } from 'react-router';
 import { BodyContainer1 } from './Home.style';
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <div
       style={{
         width: '100%',
         height: '35rem',
-        backgroundColor: 'rgba(250, 215, 10, 0.1)',
       }}
     >
       <Navbar />
       <BodyContainer1>
-        <FlexItem size='50%'>
+        <FlexItem size='50'>
           <Heading2
             variant={ColorThemeEnum.lincolnGreen}
             weight={FontWeightEnum.bolder}
@@ -35,11 +37,21 @@ const Home = () => {
           >
             Apapun permasalahan kamu temukan jawabannya disini
           </Paragraph>
-          <Button variant={ColorThemeEnum.gold} weight='800' size='md'>
+          <Button
+            variant={ColorThemeEnum.gold}
+            weight='800'
+            size='md'
+            onClick={() => navigate('/register')}
+          >
             Mulai Sekarang
           </Button>
         </FlexItem>
-        <FlexItem size='50%'></FlexItem>
+        <FlexItem size='50'>
+          <img
+            style={{ width: '100%', height: 'auto' }}
+            src='/src/assets/images/parenting.png'
+          />
+        </FlexItem>
       </BodyContainer1>
     </div>
   );

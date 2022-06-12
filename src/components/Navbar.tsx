@@ -1,5 +1,6 @@
 import logo from '@assets/images/logo_text.png';
 import { ColorThemeEnum } from '@styles/Theme';
+import { Link } from 'react-router-dom';
 import Button from './atoms/Button';
 import Input from './atoms/Input';
 import {
@@ -24,14 +25,18 @@ const Navbar = () => {
           size='20%'
         >
           <NavbarItem size='45%' style={{ marginRight: '0.75rem' }}>
-            <Button variant={ColorThemeEnum.gold} outline weight='700' block>
-              Masuk
-            </Button>
+            <Link to='/login' style={{ textDecoration: 'none' }}>
+              <Button variant={ColorThemeEnum.gold} outline weight='700' block>
+                Masuk
+              </Button>
+            </Link>
           </NavbarItem>
           <NavbarItem size='45%'>
-            <Button variant={ColorThemeEnum.gold} weight='700' block>
-              Daftar
-            </Button>
+            <Link to='/register' style={{ textDecoration: 'none' }}>
+              <Button variant={ColorThemeEnum.gold} weight='700' block>
+                Daftar
+              </Button>
+            </Link>
           </NavbarItem>
         </NavbarItem>
       </NavbarBody>

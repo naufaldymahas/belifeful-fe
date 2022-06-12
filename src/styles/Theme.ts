@@ -79,9 +79,10 @@ const Theme: DefaultTheme = {
     '1': '3.813rem',
     '2': '3.063rem',
     '3': '2.438rem',
-    '4': '1.938rem',
+    '4': '1.938rem', //31px
     '5': '1.563rem',
-    '6': '1.25rem',
+    '6': '1.25rem', //20px
+    '7': '0.8rem',
   },
   fontWeight: {
     normal: 'normal',
