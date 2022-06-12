@@ -10,7 +10,8 @@ type FlexProps = {
     | 'space-around'
     | 'space-evenly'
     | 'center'
-    | 'normal';
+    | 'normal'
+    | 'end';
   block?: boolean;
 };
 

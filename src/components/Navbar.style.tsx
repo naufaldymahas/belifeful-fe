@@ -4,9 +4,13 @@ type NavbarItemProp = {
   size: string;
 };
 
-export const NavbarContainer = styled.div`
-  padding-left: 6.5rem;
-  padding-right: 6.5rem;
+interface NavbarContainerProps {
+  padding: string;
+}
+
+export const NavbarContainer = styled.div<NavbarContainerProps>`
+  padding-left: ${({ padding }) => padding}rem;
+  padding-right: ${({ padding }) => padding}rem;
   width: 100%;
   position: absolute;
   top: 1.5rem;

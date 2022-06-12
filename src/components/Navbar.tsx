@@ -1,5 +1,7 @@
 import logo from '@assets/images/logo_text.png';
+import useWindowDimension from '@hooks/useWindowDimension';
 import { ColorThemeEnum } from '@styles/Theme';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import Button from './atoms/Button';
 import Input from './atoms/Input';
@@ -10,18 +12,28 @@ import {
   NavbarLogo,
 } from './Navbar.style';
 
-const Navbar = () => {
+interface NavbarProps {
+  width: number;
+}
+
+const Navbar: FC<NavbarProps> = ({ width }) => {
   return (
-    <NavbarContainer>
+    <NavbarContainer padding={width >= 1200 ? '6.5' : '1.5'}>
       <NavbarBody>
         <NavbarItem size='15%' style={{ height: '60%' }}>
           <NavbarLogo src={logo} />
         </NavbarItem>
-        <NavbarItem size='50%'>
+        <NavbarItem
+          size='50%'
+          style={{ display: width < 992 ? 'none' : 'block' }}
+        >
           <Input />
         </NavbarItem>
         <NavbarItem
-          style={{ display: 'flex', justifyContent: 'end' }}
+          style={{
+            display: width < 992 ? 'none' : 'flex',
+            justifyContent: 'end',
+          }}
           size='20%'
         >
           <NavbarItem size='45%' style={{ marginRight: '0.75rem' }}>

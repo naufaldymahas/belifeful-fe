@@ -3,23 +3,17 @@ import { FlexItem } from '@components/atoms/Flex';
 import { Heading2 } from '@components/atoms/Heading';
 import { Paragraph } from '@components/atoms/Paragraph';
 import { Span } from '@components/atoms/Span';
-import Navbar from '@components/Navbar';
 import { ColorThemeEnum, FontWeightEnum } from '@styles/Theme';
 import { useNavigate } from 'react-router';
 import { BodyContainer1 } from './Home.style';
 import ParentingImage from '@assets/images/parenting.png';
+import DefaultLayout from '@layouts/Default.layout';
 
 const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '35rem',
-      }}
-    >
-      <Navbar />
+    <DefaultLayout>
       <BodyContainer1>
         <FlexItem size='50'>
           <Heading2
@@ -51,7 +45,7 @@ const Home = () => {
           <img style={{ width: '100%', height: 'auto' }} src={ParentingImage} />
         </FlexItem>
       </BodyContainer1>
-    </div>
+    </DefaultLayout>
   );
 };
 
