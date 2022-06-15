@@ -93,7 +93,7 @@ export const RegisterWhiteStep3 = () => {
         <form onSubmit={submitHandler}>
           <Flex
             justifyContent='space-between'
-            style={{ marginBottom: '1.5rem' }}
+            className='mb-5'
           >
             <FlexItem size='48'>
               <Input placeholder='Nama Depan' />
@@ -104,7 +104,7 @@ export const RegisterWhiteStep3 = () => {
           </Flex>
           <Input
             placeholder='Nomor Handphone'
-            style={{ marginBottom: '1.5rem' }}
+            className='mb-5'
             onKeyDown={handleKeyDown}
           />
           <Button

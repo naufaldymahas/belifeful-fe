@@ -19,14 +19,14 @@ export const RegisterYellowStep4 = () => {
     <>
       <div style={{ paddingRight: '4.125rem' }}>
         <Paragraph
-          fs='4'
+          fs="4"
           weight={FontWeightEnum.bolder}
           variant={ColorThemeEnum.lincolnGreen}
         >
           Buat password yang kuat dan aman
         </Paragraph>
         <Paragraph
-          fs='6'
+          fs="6"
           weight={FontWeightEnum.bold}
           variant={ColorThemeEnum.lincolnGreen}
         >
@@ -114,7 +114,7 @@ export const RegisterWhiteStep4a = () => {
     <>
       <Card style={{ marginBottom: '3.25rem' }}>
         <Paragraph
-          fs='5'
+          fs="5"
           weight={FontWeightEnum.bold}
           style={{ marginBottom: '1.375rem' }}
         >
@@ -132,9 +132,9 @@ export const RegisterWhiteStep4a = () => {
           }}
         >
           <Input
-            placeholder='Password'
-            type='password'
-            style={{ marginBottom: '0.5rem' }}
+            placeholder="Password"
+            type="password"
+            className="mb-2"
             value={password}
             onChange={(e) => {
               dispatch({
@@ -147,12 +147,9 @@ export const RegisterWhiteStep4a = () => {
           />
           {password && (
             <>
-              <Flex
-                justifyContent='space-between'
-                style={{ marginBottom: '0.5rem' }}
-              >
+              <Flex justifyContent="space-between" className="mb-2">
                 <BarPasswordLevel
-                  size='39'
+                  size="39"
                   style={{ borderRadius: '2px 0px 0px 2px' }}
                   variant={
                     passwordLevel.level >= 1
@@ -161,7 +158,7 @@ export const RegisterWhiteStep4a = () => {
                   }
                 />
                 <BarPasswordLevel
-                  size='60'
+                  size="60"
                   style={{ borderRadius: '0px 2px 2px 0px' }}
                   variant={
                     passwordLevel.level >= 2
@@ -179,17 +176,17 @@ export const RegisterWhiteStep4a = () => {
                   }
                 /> */}
               </Flex>
-              <Flex style={{ alignItems: 'center' }}>
+              <Flex alignItems="center">
                 <svg
-                  width='17'
-                  height='17'
-                  viewBox='0 0 17 17'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
+                  width="17"
+                  height="17"
+                  viewBox="0 0 17 17"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <g clipPath='url(#clip0_4112_8518)'>
+                  <g clipPath="url(#clip0_4112_8518)">
                     <path
-                      d='M8.55729 14.741C12.2392 14.741 15.224 11.7563 15.224 8.07438C15.224 4.39248 12.2392 1.40771 8.55729 1.40771C4.87539 1.40771 1.89062 4.39248 1.89062 8.07438C1.89062 11.7563 4.87539 14.741 8.55729 14.741Z'
+                      d="M8.55729 14.741C12.2392 14.741 15.224 11.7563 15.224 8.07438C15.224 4.39248 12.2392 1.40771 8.55729 1.40771C4.87539 1.40771 1.89062 4.39248 1.89062 8.07438C1.89062 11.7563 4.87539 14.741 8.55729 14.741Z"
                       stroke={
                         passwordLevel.level === 1
                           ? '#FF3838'
@@ -199,12 +196,12 @@ export const RegisterWhiteStep4a = () => {
                             // ? '#0BB68C'
                             '#BABABA'
                       }
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
-                      d='M8.55859 10.7409V8.07422'
+                      d="M8.55859 10.7409V8.07422"
                       stroke={
                         passwordLevel.level === 1
                           ? '#FF3838'
@@ -214,12 +211,12 @@ export const RegisterWhiteStep4a = () => {
                             // ? '#0BB68C'
                             '#BABABA'
                       }
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
-                      d='M8.55859 5.40771H8.56526'
+                      d="M8.55859 5.40771H8.56526"
                       stroke={
                         passwordLevel.level === 1
                           ? '#FF3838'
@@ -229,18 +226,18 @@ export const RegisterWhiteStep4a = () => {
                             // ? '#0BB68C'
                             '#BABABA'
                       }
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </g>
                   <defs>
-                    <clipPath id='clip0_4112_8518'>
+                    <clipPath id="clip0_4112_8518">
                       <rect
-                        width='16'
-                        height='16'
-                        fill='white'
-                        transform='translate(0.558594 0.0742188)'
+                        width="16"
+                        height="16"
+                        fill="white"
+                        transform="translate(0.558594 0.0742188)"
                       />
                     </clipPath>
                   </defs>
@@ -255,8 +252,8 @@ export const RegisterWhiteStep4a = () => {
               </Flex>
             </>
           )}
-          <PasswordLevelAdviceWrapper style={{ marginTop: '0.5rem' }}>
-            <ol style={{ paddingLeft: '1.5rem' }}>
+          <PasswordLevelAdviceWrapper className="mt-2">
+            <ol className="pl-5">
               {passwordLevelAdvice.map((text, i) => (
                 <li key={i}>{text}</li>
               ))}
@@ -264,9 +261,9 @@ export const RegisterWhiteStep4a = () => {
           </PasswordLevelAdviceWrapper>
           <Button
             variant={ColorThemeEnum.gold}
-            weight='800'
+            weight="800"
             block
-            style={{ marginTop: '0.75rem' }}
+            className="mt-3"
           >
             Selesai
           </Button>
@@ -296,12 +293,13 @@ export const RegisterWhiteStep4b = () => {
   return (
     <>
       <Card style={{ marginBottom: '3.25rem' }}>
-        <Flex block style={{ alignItems: 'center' }} justifyContent='center'>
-          <Span fs='5' weight={FontWeightEnum.bold}>
+        <Flex block alignItems="center" justifyContent="center">
+          <Span fs="5" weight={FontWeightEnum.bold}>
             Pendaftaran Berhasil
           </Span>
           <img
-            style={{ width: 'auto', height: '20px', marginLeft: '1rem' }}
+            style={{ width: 'auto', height: '20px' }}
+            className='ml-4'
             src={CorrectIcon}
           />
         </Flex>
@@ -309,12 +307,12 @@ export const RegisterWhiteStep4b = () => {
       <Paragraph
         weight={FontWeightEnum.bold}
         variant={ColorThemeEnum.gray}
-        style={{ marginBottom: '0.5rem' }}
+        className='mb-2'
       >
         Kamu akan dialihkan ke halaman Homepage
       </Paragraph>
       <Paragraph weight={FontWeightEnum.bold} variant={ColorThemeEnum.gray}>
-        Jika halaman tidak berubah klik <Link to='/'>redirect</Link>
+        Jika halaman tidak berubah klik <Link to="/">redirect</Link>
       </Paragraph>
     </>
   );

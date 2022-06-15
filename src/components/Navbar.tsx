@@ -25,7 +25,7 @@ const Navbar: FC<NavbarProps> = ({ width }) => {
         </NavbarItem>
         <NavbarItem
           size='50%'
-          style={{ display: width < 992 ? 'none' : 'block' }}
+          className={width < 992 ? 'd-none' : 'd-block'}
         >
           <Input />
         </NavbarItem>

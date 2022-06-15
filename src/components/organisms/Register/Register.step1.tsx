@@ -52,7 +52,7 @@ export const RegisterWhiteStep1 = () => {
       >
         Daftar
       </Paragraph>
-      <form style={{width: '100%'}} onSubmit={(e) => RegisterCheckEmail(e, dispatch)}>
+      <form className='w-100' onSubmit={(e) => RegisterCheckEmail(e, dispatch)}>
         <Input placeholder='Email Address' type='email' />
         <Button
           variant={ColorThemeEnum.gold}

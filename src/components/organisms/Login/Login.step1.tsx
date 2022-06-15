@@ -18,7 +18,7 @@ export const LoginWhiteStep1 = () => {
         Masuk
       </Paragraph>
       <form
-        style={{ width: '100%' }}
+        className='w-100'
         onSubmit={(e) => {
           e.preventDefault();
           dispatch({

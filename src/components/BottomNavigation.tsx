@@ -39,14 +39,14 @@ const BottomNavigation = () => {
       <BottomNavigationBody>
         {bottomNavItems.map((item, i) => (
           <FlexItem
-            style={{ textAlign: 'center', cursor: 'pointer' }}
+            className='text-center pointer'
             size={(100 / bottomNavItems.length).toString()}
             key={i}
           >
-            <Flex style={{ flexDirection: 'column', alignItems: 'center' }}>
+            <Flex flexDirection='column' alignItems='center'>
               <FlexItem size='25'>
                 <img
-                  style={{ width: '100%', height: 'auto' }}
+                  className='w-100 h-auto'
                   src={item.icon}
                 />
               </FlexItem>

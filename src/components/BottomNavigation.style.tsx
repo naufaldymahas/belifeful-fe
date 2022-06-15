@@ -4,7 +4,7 @@ export const BottomNavigationContainer = styled.div`
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   width: 100%;
-  position: sticky;
+  position: fixed;
   bottom: 1.5rem;
 `;
 

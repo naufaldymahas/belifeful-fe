@@ -2,7 +2,7 @@ import BottomNavigation from '@components/BottomNavigation';
 import Footer from '@components/Footer';
 import Navbar from '@components/Navbar';
 import useWindowDimension from '@hooks/useWindowDimension';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import styled from 'styled-components';
 
 const DefaultLayoutWrapper = styled.div`
@@ -10,7 +10,17 @@ const DefaultLayoutWrapper = styled.div`
 `;
 
 const DefaultLayout: FC = ({ children }) => {
-  const { width } = useWindowDimension();
+  const { width, height } = useWindowDimension();
+
+  useEffect(() => {
+    if (window) {
+      window.onscroll = () => {
+        console.log(window.scrollY);
+      };
+    }
+    console.log(height);
+  });
+
   return (
     <DefaultLayoutWrapper>
       <Navbar width={width} />

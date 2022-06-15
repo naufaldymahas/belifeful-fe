@@ -16,14 +16,14 @@ export const RegisterYellowStep2 = () => {
     <>
       <div style={{ paddingRight: '4.125rem' }}>
         <Paragraph
-          fs='4'
+          fs="4"
           weight={FontWeightEnum.bolder}
           variant={ColorThemeEnum.lincolnGreen}
         >
           Verifikasi E-mail demi keamanan akun kamu
         </Paragraph>
         <Paragraph
-          fs='6'
+          fs="6"
           weight={FontWeightEnum.bold}
           variant={ColorThemeEnum.lincolnGreen}
         >
@@ -51,7 +51,7 @@ export const RegisterWhiteStep2a = () => {
     <>
       <Card style={{ marginBottom: '3.25rem' }}>
         <Paragraph
-          fs='5'
+          fs="5"
           weight={FontWeightEnum.bold}
           style={{ marginBottom: '1.375rem' }}
         >
@@ -65,7 +65,7 @@ export const RegisterWhiteStep2a = () => {
             });
           }}
         >
-          <Flex style={{ flexDirection: 'column' }}>
+          <Flex flexDirection="column">
             <Span weight={FontWeightEnum.bold}>E-mail ke</Span>
             <Span weight={FontWeightEnum.semi}>{state.email}</Span>
           </Flex>
@@ -75,7 +75,7 @@ export const RegisterWhiteStep2a = () => {
       <Span
         weight={FontWeightEnum.bold}
         variant={ColorThemeEnum.persianGreen}
-        style={{ cursor: 'pointer' }}
+        className="pointer"
         onClick={() =>
           dispatch({
             type: RegisterActionType.SET_STEP,
@@ -178,7 +178,7 @@ export const RegisterWhiteStep2b = () => {
     <>
       <Card style={{ marginBottom: '3.25rem' }}>
         <Paragraph
-          fs='5'
+          fs="5"
           weight={FontWeightEnum.bold}
           style={{ marginBottom: '1.375rem' }}
         >
@@ -250,13 +250,10 @@ export const RegisterWhiteStep2b = () => {
         {isFailed > 0 && (
           <Flex
             block
-            justifyContent='center'
+            justifyContent="center"
             style={{ marginBottom: '1.375rem' }}
           >
-            <Span
-              weight={FontWeightEnum.bold}
-              style={{ marginRight: '0.25rem' }}
-            >
+            <Span weight={FontWeightEnum.bold} className="mr-1">
               {isFailed === 1 ? 'Verifikasi berhasil' : 'Kode OTP salah'}
             </Span>
             <img src={isFailed === 1 ? CorrectIcon : WrongIcon} />
@@ -275,7 +272,7 @@ export const RegisterWhiteStep2b = () => {
         ) : (
           <>
             <Paragraph
-              style={{ marginBottom: '0.25rem', cursor: 'pointer' }}
+              className="mb-1 pointer"
               weight={FontWeightEnum.bold}
               variant={ColorThemeEnum.persianGreen}
             >
@@ -284,7 +281,7 @@ export const RegisterWhiteStep2b = () => {
             <Paragraph
               weight={FontWeightEnum.bold}
               variant={ColorThemeEnum.gray}
-              style={{ cursor: 'pointer' }}
+              className="pointer"
               onClick={() => {
                 dispatch({
                   type: RegisterActionType.SET_STEP,

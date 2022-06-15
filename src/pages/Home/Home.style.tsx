@@ -1,9 +1,15 @@
 import { Flex } from '@components/atoms/Flex';
 import styled from 'styled-components';
 
-export const BodyContainer1 = styled(Flex)`
+interface bodyContainerProps {
+  paddingTop?: string
+  paddingX?: string
+}
+
+
+export const BodyContainer1 = styled(Flex)<bodyContainerProps>`
   background-color: rgba(250, 215, 10, 0.1);
-  padding-top: 13.125rem;
-  padding-left: 6.5rem;
-  padding-right: 6.5rem;
+  padding-top: ${({paddingTop}) => paddingTop || '13'}rem;
+  padding-left: ${({paddingX}) => paddingX || '6.5'}rem;
+  padding-right: ${({paddingX}) => paddingX || '6.5'}rem;
 `;

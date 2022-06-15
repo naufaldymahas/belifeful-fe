@@ -13,6 +13,8 @@ type FlexProps = {
     | 'normal'
     | 'end';
   block?: boolean;
+  flexDirection?: 'column' | 'row';
+  alignItems?: 'center';
 };
 
 export const Flex = styled.div<FlexProps>`
@@ -20,6 +22,8 @@ export const Flex = styled.div<FlexProps>`
   ${({ justifyContent }) =>
     justifyContent && `justify-content: ${justifyContent};`}
   ${({ block }) => block && `width: 100%;`}
+  ${({ flexDirection }) => flexDirection && `flex-direction: ${flexDirection};`}
+  ${({ alignItems }) => alignItems && `align-items: ${alignItems};`}
 `;
 
 export const FlexItem = styled.div<FlexItemProps>`

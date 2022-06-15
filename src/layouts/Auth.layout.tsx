@@ -3,6 +3,7 @@ import { FC, ReactNode } from 'react';
 import styled from 'styled-components';
 import Logo from '@assets/images/logo_text.png';
 import { useNavigate } from 'react-router';
+import useWindowDimension from '@hooks/useWindowDimension';
 
 export const AuthLayoutContainer = styled(Flex)`
   min-height: 100vh;
@@ -64,6 +65,7 @@ export const AuthLayout: FC<AuthProps> = ({
   yellowComponent,
 }) => {
   const navigate = useNavigate();
+  const { width } = useWindowDimension();
 
   return (
     <AuthLayoutContainer>
@@ -74,9 +76,13 @@ export const AuthLayout: FC<AuthProps> = ({
             onClick={() => {
               navigate('/');
             }}
-            style={{ width: '20%', marginBottom: '3.25rem', cursor: 'pointer' }}
+            style={{
+              width: width <= 600 ? '35%' : '20%',
+              marginBottom: '3.25rem',
+            }}
+            className="pointer"
           >
-            <img src={Logo} style={{ width: '100%' }} />
+            <img className="w-100" src={Logo} />
           </div>
           {whiteComponent}
         </AuthLayoutWhiteBody>

@@ -36,9 +36,9 @@ const Dot = styled.div`
 const Loader = () => {
   return (
     <LoaderWraper>
-      <Dot style={{ marginRight: '1.5rem' }} />
+      <Dot className="mr-5" />
       <Dot />
-      <Dot style={{ marginLeft: '1.5rem' }} />
+      <Dot className="ml-5" />
     </LoaderWraper>
   );
 };

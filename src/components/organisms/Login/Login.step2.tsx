@@ -8,29 +8,25 @@ import AuthForm from '../Auth/AuthForm';
 
 export const LoginWhiteStep2 = () => {
   return (
-    <AuthForm authType='login'>
+    <AuthForm authType="login">
       <Paragraph
-        fs='4'
+        fs="4"
         weight={FontWeightEnum.bolder}
         style={{ marginBottom: '1.375rem' }}
       >
         Masuk
       </Paragraph>
-      <form style={{width: '100%'}} onSubmit={() => null}>
-        <Input
-          placeholder='Password'
-          type='password'
-          style={{ marginBottom: '0.5rem' }}
-        />
-        <Flex justifyContent='space-between' style={{ alignItems: 'center' }}>
-          <Flex style={{ alignItems: 'center' }}>
-            <input type='checkbox' />
-            <Span fs='7' weight={FontWeightEnum.bold}>
+      <form className="w-100" onSubmit={() => null}>
+        <Input placeholder="Password" type="password" className="mb-2" />
+        <Flex justifyContent="space-between" alignItems="center">
+          <Flex alignItems="center">
+            <input type="checkbox" />
+            <Span fs="7" weight={FontWeightEnum.bold}>
               Ingat Saya
             </Span>
           </Flex>
           <Span
-            fs='7'
+            fs="7"
             weight={FontWeightEnum.bold}
             variant={ColorThemeEnum.sunsetOrange}
           >
@@ -39,7 +35,7 @@ export const LoginWhiteStep2 = () => {
         </Flex>
         <Button
           variant={ColorThemeEnum.gold}
-          weight='800'
+          weight="800"
           block
           style={{ marginTop: '0.875rem' }}
         >

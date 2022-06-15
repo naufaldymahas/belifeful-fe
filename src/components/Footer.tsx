@@ -15,7 +15,7 @@ interface FooterProps {
 }
 
 const Footer: FC<FooterProps> = ({ width }) => {
-  const yearNow = useMemo(() => new Date().getFullYear(), []);
+  const copyright = useMemo(() => `©${new Date().getFullYear()} Belifeful`, []);
   const footerItems = useMemo(
     () => [
       {
@@ -42,27 +42,27 @@ const Footer: FC<FooterProps> = ({ width }) => {
       >
         <FlexItem
           size={width <= 992 ? '50' : '25'}
-          style={{ textAlign: width <= 600 ? 'center' : 'unset' }}
+          className={width <= 600 ? 'text-center' : undefined}
         >
           <img
-            style={{ width: width <= 1080 ? '70%' : '50%', height: 'auto' }}
+            className={`h-auto w-${width <= 1080 ? '75' : '50'}`}
             src={Logo}
           />
         </FlexItem>
         {width <= 600 && (
-          <FlexItem size='50'>
-            <Paragraph weight={FontWeightEnum.bolder} fs='5'>
+          <FlexItem size="50">
+            <Paragraph weight={FontWeightEnum.bolder} fs="5">
               {footerItems[0].title}
             </Paragraph>
             {footerItems[0].desc}
           </FlexItem>
         )}
         {width > 600 && (
-          <FlexItem size='75'>
-            <Flex justifyContent='space-between'>
+          <FlexItem size="75">
+            <Flex justifyContent="space-between">
               {footerItems.map((item, i) => (
                 <FlexItem key={i} size={i === 0 ? '30' : '20'}>
-                  <Paragraph weight={FontWeightEnum.bolder} fs='5'>
+                  <Paragraph weight={FontWeightEnum.bolder} fs="5">
                     {item.title}
                   </Paragraph>
                   {item.desc && <Span>{item.desc}</Span>}
@@ -90,9 +90,9 @@ const Footer: FC<FooterProps> = ({ width }) => {
           <FooterSection
             paddingX={width <= 600 ? '1.5' : '6.25'}
             variant={ColorThemeEnum.antiFlashWhite}
-            paddingTop='0'
+            paddingTop="0"
           >
-            <Flex justifyContent='center' block>
+            <Flex justifyContent="center" block>
               {footerItems[1].list!.map((desc, i) => (
                 <Span
                   key={i}
@@ -114,9 +114,9 @@ const Footer: FC<FooterProps> = ({ width }) => {
           <FooterSection
             paddingX={width <= 600 ? '1.5' : '6.25'}
             variant={ColorThemeEnum.antiFlashWhite}
-            paddingTop='0'
+            paddingTop="0"
           >
-            <Flex justifyContent='center' block>
+            <Flex justifyContent="center" block>
               {footerItems[2].list!.map((desc, i) => (
                 <Span
                   key={i}
@@ -138,22 +138,35 @@ const Footer: FC<FooterProps> = ({ width }) => {
         </>
       )}
       <FooterSection
-        style={{ alignItems: 'center' }}
+        alignItems="center"
         variant={ColorThemeEnum.gold}
         paddingX={width <= 600 ? '1.5' : '6.25'}
       >
+        {width <= 600 && (
+          <FlexItem>
+            <Span weight={FontWeightEnum.semi}>{copyright}</Span>
+          </FlexItem>
+        )}
+
         <FlexItem>
-          <Span weight={FontWeightEnum.semi}>©{yearNow} Belifeful</Span>
-        </FlexItem>
-        <FlexItem>
-          <Flex justifyContent='end'>
+          <Flex justifyContent={width <= 600 ? 'space-evenly' : 'end'}>
             <img src={Instagram} />
-            <img style={{ marginLeft: '0.75rem' }} src={Youtube} />
-            <img style={{ marginLeft: '0.75rem' }} src={Facebook} />
-            <img style={{ marginLeft: '0.75rem' }} src={Twitter} />
+            <img className={width <= 600 ? 'ml-3' : 'ml-0'} src={Youtube} />
+            <img className={width <= 600 ? 'ml-3' : 'ml-0'} src={Facebook} />
+            <img className={width <= 600 ? 'ml-3' : 'ml-0'} src={Twitter} />
           </Flex>
         </FlexItem>
       </FooterSection>
+      {width <= 600 && (
+        <FooterSection
+          variant={ColorThemeEnum.antiFlashWhite}
+          paddingX={width <= 600 ? '1.5' : '6.25'}
+          justifyContent="center"
+          style={{ paddingBottom: '7.5rem' }}
+        >
+          <Span>{copyright}</Span>
+        </FooterSection>
+      )}
     </FooterWrapper>
   );
 };

@@ -18,22 +18,22 @@ const AuthForm: FC<AuthFormProps> = ({ authType, children }) => {
     <>
       <Card style={{ marginBottom: '3.25rem' }}>
         {children}
-        <AuthLayoutStripWrapper style={{ marginBottom: '1.5rem' }}>
-          <AuthLayoutStrip size='25' />
-          <FlexItem size='50' style={{ textAlign: 'center' }}>
+        <AuthLayoutStripWrapper className="mb-5">
+          <AuthLayoutStrip size="25" />
+          <FlexItem size="50" className='text-center'>
             <Span variant={ColorThemeEnum.gray}>
               atau {authType === 'register' ? 'daftar' : 'masuk'} dengan
             </Span>
           </FlexItem>
-          <AuthLayoutStrip size='25' />
+          <AuthLayoutStrip size="25" />
         </AuthLayoutStripWrapper>
-        <Flex style={{ width: '100%', justifyContent: 'space-between' }}>
-          <FlexItem size='48'>
+        <Flex justifyContent='space-between' block>
+          <FlexItem size="48">
             <Button variant={ColorThemeEnum.gray} outline block>
               Google
             </Button>
           </FlexItem>
-          <FlexItem size='48'>
+          <FlexItem size="48">
             <Button variant={ColorThemeEnum.gray} outline block>
               Facebook
             </Button>

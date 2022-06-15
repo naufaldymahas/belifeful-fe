@@ -7,23 +7,30 @@ import { AuthLayout } from '@layouts/Auth.layout';
 import { ColorThemeEnum, FontWeightEnum } from '@styles/Theme';
 import { LoginYellowWrapper } from './Login.style';
 import LoginImage from '@assets/images/login.png';
+import useWindowDimension from '@hooks/useWindowDimension';
 
 const Login = () => {
+  const { width } = useWindowDimension();
+
   return (
     <LoginContextWrapper>
       <AuthLayout
         yellowComponent={
-          <LoginYellowWrapper justifyContent='center'>
+          <LoginYellowWrapper justifyContent="center">
             <FlexItem>
               <img
-                style={{ width: '100%', height: 'auto', marginLeft: '-1rem' }}
+                style={{ marginLeft: width <= 600 ? '0' : '-1rem' }}
+                className="w-100 h-auto"
                 src={LoginImage}
               />
             </FlexItem>
-            <FlexItem style={{ textAlign: 'center', marginLeft: '-1rem' }}>
+            <FlexItem
+              className="text-center"
+              style={{ marginLeft: width <= 600 ? '0' : '-1rem' }}
+            >
               <Span
                 weight={FontWeightEnum.bold}
-                fs='4'
+                fs="4"
                 variant={ColorThemeEnum.lincolnGreen}
               >
                 Teman kamu dalam membangun keluarga
