@@ -1,37 +1,34 @@
 import logo from '@assets/images/logo_text.png';
-import useWindowDimension from '@hooks/useWindowDimension';
+import { useGlobalContext } from '@contexts/Global.context';
 import { ColorThemeEnum } from '@styles/Theme';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import Button from './atoms/Button';
-import Input from './atoms/Input';
 import {
   NavbarBody,
   NavbarContainer,
   NavbarItem,
   NavbarLogo,
+  NavbarSearchInput,
 } from './Navbar.style';
 
-interface NavbarProps {
-  width: number;
-}
+const Navbar: FC = () => {
+  const {
+    state: { width },
+  } = useGlobalContext();
 
-const Navbar: FC<NavbarProps> = ({ width }) => {
   return (
     <NavbarContainer padding={width >= 1200 ? '6.5' : '1.5'}>
       <NavbarBody>
         <NavbarItem size='15%' style={{ height: '60%' }}>
           <NavbarLogo src={logo} />
         </NavbarItem>
-        <NavbarItem
-          size='50%'
-          className={width < 992 ? 'd-none' : 'd-block'}
-        >
-          <Input />
+        <NavbarItem size={width >= 1200 ? '50%' : '55%'}>
+          <NavbarSearchInput placeholder='Cari kelas kamu disini' />
         </NavbarItem>
         <NavbarItem
           style={{
-            display: width < 992 ? 'none' : 'flex',
+            display: width < 1200 ? 'none' : 'flex',
             justifyContent: 'end',
           }}
           size='20%'

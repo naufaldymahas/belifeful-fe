@@ -1,8 +1,8 @@
 import BottomNavigation from '@components/BottomNavigation';
 import Footer from '@components/Footer';
 import Navbar from '@components/Navbar';
-import useWindowDimension from '@hooks/useWindowDimension';
-import { FC, useEffect } from 'react';
+import { useGlobalContext } from '@contexts/Global.context';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 const DefaultLayoutWrapper = styled.div`
@@ -10,23 +10,16 @@ const DefaultLayoutWrapper = styled.div`
 `;
 
 const DefaultLayout: FC = ({ children }) => {
-  const { width, height } = useWindowDimension();
-
-  useEffect(() => {
-    if (window) {
-      window.onscroll = () => {
-        console.log(window.scrollY);
-      };
-    }
-    console.log(height);
-  });
+  const {
+    state: { width },
+  } = useGlobalContext();
 
   return (
     <DefaultLayoutWrapper>
-      <Navbar width={width} />
+      <Navbar />
       {children}
-      <Footer width={width} />
-      {width <= 600 && <BottomNavigation />}
+      <Footer />
+      {width < 1200 && <BottomNavigation />}
     </DefaultLayoutWrapper>
   );
 };

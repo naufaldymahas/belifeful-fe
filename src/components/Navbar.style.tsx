@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Input from './atoms/Input';
 
 type NavbarItemProp = {
   size: string;
@@ -35,4 +36,14 @@ export const NavbarItem = styled.div<NavbarItemProp>`
 export const NavbarLogo = styled.img`
   width: auto;
   height: 100%;
+`;
+
+export const NavbarSearchInput = styled(Input)`
+  border: none;
+  background-color: ${({ theme }) => theme.colors.antiFlashWhite};
+  color: ${({ theme }) => theme.colors.gray};
+
+  &:focus {
+    color: ${({ theme }) => theme.colors.darkCharcoal};
+  }
 `;

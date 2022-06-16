@@ -6,11 +6,13 @@ import { Theme, GlobalStyle } from './styles';
 import { Routes as AppRoutes } from '@routes/index';
 import Loader from '@components/molecules/Loader';
 import '@styles/global.style.css';
+import { GlobalContextWrapper } from '@contexts/Global.context';
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
+      <GlobalContextWrapper>
       <BrowserRouter>
         <Suspense fallback={<Loader />}>
           <Routes>
@@ -20,6 +22,7 @@ ReactDOM.render(
           </Routes>
         </Suspense>
       </BrowserRouter>
+      </GlobalContextWrapper>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

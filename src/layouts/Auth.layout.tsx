@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react';
 import styled from 'styled-components';
 import Logo from '@assets/images/logo_text.png';
 import { useNavigate } from 'react-router';
-import useWindowDimension from '@hooks/useWindowDimension';
+import { useGlobalContext } from '@contexts/Global.context';
 
 export const AuthLayoutContainer = styled(Flex)`
   min-height: 100vh;
@@ -65,7 +65,9 @@ export const AuthLayout: FC<AuthProps> = ({
   yellowComponent,
 }) => {
   const navigate = useNavigate();
-  const { width } = useWindowDimension();
+  const {
+    state: { width },
+  } = useGlobalContext();
 
   return (
     <AuthLayoutContainer>
@@ -80,9 +82,9 @@ export const AuthLayout: FC<AuthProps> = ({
               width: width <= 600 ? '35%' : '20%',
               marginBottom: '3.25rem',
             }}
-            className="pointer"
+            className='pointer'
           >
-            <img className="w-100" src={Logo} />
+            <img className='w-100' src={Logo} />
           </div>
           {whiteComponent}
         </AuthLayoutWhiteBody>
