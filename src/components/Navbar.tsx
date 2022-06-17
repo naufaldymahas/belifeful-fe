@@ -20,29 +20,31 @@ const Navbar: FC = () => {
   return (
     <NavbarContainer padding={width >= 1200 ? '6.5' : '1.5'}>
       <NavbarBody>
-        <NavbarItem size='15%' style={{ height: '60%' }}>
-          <NavbarLogo src={logo} />
+        <NavbarItem size="15%" style={{ height: '60%' }}>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <NavbarLogo src={logo} />
+          </Link>
         </NavbarItem>
         <NavbarItem size={width >= 1200 ? '50%' : '55%'}>
-          <NavbarSearchInput placeholder='Cari kelas kamu disini' />
+          <NavbarSearchInput placeholder="Cari kelas kamu disini" />
         </NavbarItem>
         <NavbarItem
           style={{
             display: width < 1200 ? 'none' : 'flex',
             justifyContent: 'end',
           }}
-          size='20%'
+          size="20%"
         >
-          <NavbarItem size='45%' style={{ marginRight: '0.75rem' }}>
-            <Link to='/login' style={{ textDecoration: 'none' }}>
-              <Button variant={ColorThemeEnum.gold} outline weight='700' block>
+          <NavbarItem size="45%" style={{ marginRight: '0.75rem' }}>
+            <Link to="/login" style={{ textDecoration: 'none' }}>
+              <Button variant={ColorThemeEnum.gold} outline weight="700" block>
                 Masuk
               </Button>
             </Link>
           </NavbarItem>
-          <NavbarItem size='45%'>
-            <Link to='/register' style={{ textDecoration: 'none' }}>
-              <Button variant={ColorThemeEnum.gold} weight='700' block>
+          <NavbarItem size="45%">
+            <Link to="/register" style={{ textDecoration: 'none' }}>
+              <Button variant={ColorThemeEnum.gold} weight="700" block>
                 Daftar
               </Button>
             </Link>

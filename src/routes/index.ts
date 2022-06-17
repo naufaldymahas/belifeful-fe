@@ -3,6 +3,7 @@ import React from 'react';
 const App = React.lazy(() => import('../App'));
 const Register = React.lazy(() => import('@pages/Register/Register'));
 const Login = React.lazy(() => import('@pages/Login/Login'));
+const PageNotFound = React.lazy(() => import('@pages/PageNotFound'));
 
 interface IRoutes {
   path: string;
@@ -20,4 +21,5 @@ export const Routes: IRoutes[] = [
     element: Register,
   },
   { path: '/login', element: Login },
+  { path: '*', element: PageNotFound },
 ];

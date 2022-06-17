@@ -8,7 +8,7 @@ interface bodyContainerProps {
   backgroundColor?: ColorThemeEnum;
 }
 
-export const BodyContainer = styled(Flex)<bodyContainerProps>`
+const BodyContainer = styled(Flex)<bodyContainerProps>`
   background-color: ${({ backgroundColor, theme }) =>
     backgroundColor
       ? theme.colors[backgroundColor]
@@ -17,3 +17,5 @@ export const BodyContainer = styled(Flex)<bodyContainerProps>`
   padding-left: ${({ paddingX }) => paddingX || '6.5'}rem;
   padding-right: ${({ paddingX }) => paddingX || '6.5'}rem;
 `;
+
+export default BodyContainer;

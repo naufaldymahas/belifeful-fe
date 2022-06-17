@@ -5,7 +5,6 @@ import { ThemeProvider } from 'styled-components';
 import { Theme, GlobalStyle } from './styles';
 import { Routes as AppRoutes } from '@routes/index';
 import Loader from '@components/molecules/Loader';
-import '@styles/global.style.css';
 import { GlobalContextWrapper } from '@contexts/Global.context';
 
 ReactDOM.render(
