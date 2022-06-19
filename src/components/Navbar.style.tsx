@@ -13,8 +13,9 @@ export const NavbarContainer = styled.div<NavbarContainerProps>`
   padding-left: ${({ padding }) => padding}rem;
   padding-right: ${({ padding }) => padding}rem;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 1.5rem;
+  z-index: 10;
 `;
 
 export const NavbarBody = styled.nav`
@@ -22,8 +23,6 @@ export const NavbarBody = styled.nav`
   width: 100%;
   height: 4.5rem;
   padding: 0.75rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
   border-radius: 1rem;
   box-shadow: 0rem 0.375rem 0.75rem rgba(0, 0, 0, 0.1);
   align-items: center;
@@ -34,8 +33,12 @@ export const NavbarItem = styled.div<NavbarItemProp>`
 `;
 
 export const NavbarLogo = styled.img`
-  width: auto;
-  height: 100%;
+  width: 100%;
+  margin-top: 0.5rem;
+
+  @media only screen and (min-width: 1080px) {
+    width: 75%;
+  }
 `;
 
 export const NavbarSearchInput = styled(Input)`

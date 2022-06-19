@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 const DefaultLayoutWrapper = styled.div`
   position: relative;
+  background-color: ${({ theme }) => theme.colors.lotion};
 `;
 
 const DefaultLayout: FC = ({ children }) => {
