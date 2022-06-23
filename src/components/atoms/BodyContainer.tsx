@@ -11,7 +11,7 @@ const BodyContainer = styled(Flex)<bodyContainerProps>`
   padding-top: 13rem;
 
   @media only screen and (max-width: 992px) {
-    padding-top: 5.5rem;
+    padding-top: 7.5rem;
   }
 
   @media only screen and (max-width: 1320px) {

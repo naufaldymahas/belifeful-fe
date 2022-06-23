@@ -44,22 +44,27 @@ const BottomNavigation = () => {
       <BottomNavigationBody>
         {bottomNavItems.map((item, i) => (
           <FlexItem
-            className='text-center pointer'
+            className="text-center pointer h-100"
             size={(100 / bottomNavItems.length).toString()}
             key={i}
           >
             <Link to={item.url} style={{ textDecoration: 'none' }}>
-              <Flex flexDirection='column' alignItems='center'>
-                <FlexItem size='25'>
-                  <img className='w-100 h-auto' src={item.icon} />
-                </FlexItem>
-                <Span
-                  variant={ColorThemeEnum.darkCharcoal}
-                  weight={FontWeightEnum.bold}
-                >
-                  {item.title}
-                </Span>
-              </Flex>
+              {/* <Flex flexDirection='column' alignItems='center'> */}
+              {/* <FlexItem size='25'> */}
+              {/* </FlexItem> */}
+              <div
+                style={{ width: '32px', height: '32px' }}
+                className="d-block mx-auto"
+              >
+                <img className="w-100 h-auto" src={item.icon} />
+              </div>
+              <Span
+                variant={ColorThemeEnum.darkCharcoal}
+                weight={FontWeightEnum.bold}
+              >
+                {item.title}
+              </Span>
+              {/* </Flex> */}
             </Link>
           </FlexItem>
         ))}

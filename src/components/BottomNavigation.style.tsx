@@ -6,6 +6,7 @@ export const BottomNavigationContainer = styled.div`
   width: 100%;
   position: fixed;
   bottom: 1.5rem;
+  z-index: 99;
 `;
 
 export const BottomNavigationBody = styled.nav`

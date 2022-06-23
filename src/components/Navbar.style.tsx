@@ -25,6 +25,8 @@ export const NavbarBody = styled.nav`
   padding: 0.75rem 1.5rem;
   border-radius: 1rem;
   box-shadow: 0rem 0.375rem 0.75rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -38,6 +40,10 @@ export const NavbarLogo = styled.img`
 
   @media only screen and (min-width: 1080px) {
     width: 75%;
+  }
+
+  @media only screen and (min-width: 1400px) {
+    width: 50%;
   }
 `;
 

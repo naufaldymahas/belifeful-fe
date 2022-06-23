@@ -21,43 +21,36 @@ const Navbar: FC = () => {
   return (
     <NavbarContainer padding={width >= 1200 ? '6.5' : '1.5'}>
       <NavbarBody>
-        <Container className="d-flex align-items-center justify-content-between">
-          <NavbarItem size={width >= 768 ? '15%' : '25%'}>
-            <Link to="/" style={{ textDecoration: 'none' }}>
-              <NavbarLogo src={logo} />
+        <NavbarItem size={width >= 768 ? '15%' : '25%'}>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <NavbarLogo src={logo} />
+          </Link>
+        </NavbarItem>
+        <NavbarItem size={width >= 1200 ? '50%' : '70%'}>
+          <NavbarSearchInput placeholder="Cari kelas kamu disini" />
+        </NavbarItem>
+        <NavbarItem
+          style={{
+            display: width < 1200 ? 'none' : 'flex',
+            justifyContent: 'end',
+          }}
+          size="20%"
+        >
+          <NavbarItem size="45%" style={{ marginRight: '0.75rem' }}>
+            <Link to="/login" style={{ textDecoration: 'none' }}>
+              <Button variant={ColorThemeEnum.gold} outline weight="700" block>
+                Masuk
+              </Button>
             </Link>
           </NavbarItem>
-          <NavbarItem size={width >= 1200 ? '50%' : '70%'}>
-            <NavbarSearchInput placeholder="Cari kelas kamu disini" />
+          <NavbarItem size="45%">
+            <Link to="/register" style={{ textDecoration: 'none' }}>
+              <Button variant={ColorThemeEnum.gold} weight="700" block>
+                Daftar
+              </Button>
+            </Link>
           </NavbarItem>
-          <NavbarItem
-            style={{
-              display: width < 1200 ? 'none' : 'flex',
-              justifyContent: 'end',
-            }}
-            size="20%"
-          >
-            <NavbarItem size="45%" style={{ marginRight: '0.75rem' }}>
-              <Link to="/login" style={{ textDecoration: 'none' }}>
-                <Button
-                  variant={ColorThemeEnum.gold}
-                  outline
-                  weight="700"
-                  block
-                >
-                  Masuk
-                </Button>
-              </Link>
-            </NavbarItem>
-            <NavbarItem size="45%">
-              <Link to="/register" style={{ textDecoration: 'none' }}>
-                <Button variant={ColorThemeEnum.gold} weight="700" block>
-                  Daftar
-                </Button>
-              </Link>
-            </NavbarItem>
-          </NavbarItem>
-        </Container>
+        </NavbarItem>
       </NavbarBody>
     </NavbarContainer>
   );

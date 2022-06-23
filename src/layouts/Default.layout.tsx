@@ -20,7 +20,7 @@ const DefaultLayout: FC = ({ children }) => {
       <Navbar />
       {children}
       <Footer />
-      {width < 1200 && <BottomNavigation />}
+      {width < 992 && <BottomNavigation />}
     </DefaultLayoutWrapper>
   );
 };

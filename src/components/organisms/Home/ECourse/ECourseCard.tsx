@@ -6,7 +6,7 @@ import { ECourseCardContainer, ECourseCardImage } from './ECourseCard.style';
 
 const ECourseCard = () => {
   return (
-    <ECourseCardContainer size="30" className="mx-4 mb-6">
+    <ECourseCardContainer size="30" className="mx-3 mb-6">
       <ECourseCardImage>
         <img
           className="p-absolute w-100"
@@ -17,16 +17,27 @@ const ECourseCard = () => {
         <div
           style={{
             height: '3.75rem',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
           }}
           className="mb-3"
         >
-          <Paragraph fs="6" weight={FontWeightEnum.bold}>
+          <Paragraph
+            fs="6"
+            weight={FontWeightEnum.bold}
+            style={{
+              overflow: 'hidden',
+              display: '-webkit-box',
+              WebkitLineClamp: '2',
+              WebkitBoxOrient: 'vertical',
+            }}
+          >
             Belajar Menjadi Ayah yang Baik Pada Masa Pandemi
           </Paragraph>
         </div>
-        <Flex className="mb-3" alignItems="center">
+        <Flex
+          className="mb-3"
+          alignItems="center"
+          justifyContent="space-between"
+        >
           <FlexItem size="20">
             <div
               style={{
@@ -39,7 +50,7 @@ const ECourseCard = () => {
               }}
             />
           </FlexItem>
-          <FlexItem size="80">
+          <FlexItem size="75">
             <Paragraph className="mb-0">Rahman Syaidan</Paragraph>
             <Paragraph className="mb-0">Psikolog Keluarga</Paragraph>
           </FlexItem>
