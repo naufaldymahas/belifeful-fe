@@ -46,7 +46,7 @@ const Testimonial: FC<{ width: number }> = ({ width }) => {
               <div
                 className="shadow rounded px-3 py-4 text-wrap d-flex align-items-center"
                 style={{
-                  backgroundColor: '#FFFCDE',
+                  backgroundColor: i % 2 === 0 ? '#FFFCDE' : '#EDF8EE',
                   width: '14rem',
                   height: '12.5rem',
                 }}
