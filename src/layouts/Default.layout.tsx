@@ -3,12 +3,6 @@ import Footer from '@components/Footer';
 import Navbar from '@components/Navbar';
 import { useGlobalContext } from '@contexts/Global.context';
 import { FC } from 'react';
-import styled from 'styled-components';
-
-const DefaultLayoutWrapper = styled.div`
-  position: relative;
-  background-color: ${({ theme }) => theme.colors.lotion};
-`;
 
 const DefaultLayout: FC = ({ children }) => {
   const {
@@ -16,12 +10,12 @@ const DefaultLayout: FC = ({ children }) => {
   } = useGlobalContext();
 
   return (
-    <DefaultLayoutWrapper>
+    <div className="position-relative">
       <Navbar />
       {children}
       <Footer />
       {width < 992 && <BottomNavigation />}
-    </DefaultLayoutWrapper>
+    </div>
   );
 };
 

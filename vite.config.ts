@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import purgecss from 'rollup-plugin-purgecss';
 const path = require('path');
 
 // https://vitejs.dev/config/
@@ -16,5 +17,10 @@ export default defineConfig({
       '@hooks': path.resolve(__dirname, './src/hooks'),
     },
   },
-  plugins: [react()],
+  plugins: [
+    react(),
+    purgecss({
+      content: ['./src/*.tsx', './src/**/*.tsx', './index.html'],
+    }),
+  ],
 });

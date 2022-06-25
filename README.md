@@ -1,7 +1,7 @@
 ## TODO
 
 - layout login [v]
-- layout register []
+- layout register [v]
 - layout home []
 - layout forgot password []
 - layout detail e-course []

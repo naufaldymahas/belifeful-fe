@@ -1,18 +1,16 @@
-import { ColorThemeEnum, FontWeightEnum } from '@styles/Theme';
 import { useMemo } from 'react';
-import { Flex, FlexItem } from './atoms/Flex';
-import { Span } from './atoms/Span';
-import {
-  BottomNavigationContainer,
-  BottomNavigationBody,
-} from './BottomNavigation.style';
 import HomeIcon from '@assets/images/home.png';
 import ECourseIcon from '@assets/images/e-course.png';
 import CartIcon from '@assets/images/cart.png';
 import ProfileIcon from '@assets/images/profile.png';
 import { Link } from 'react-router-dom';
+import { useGlobalContext } from '@contexts/Global.context';
 
 const BottomNavigation = () => {
+  const {
+    state: { width },
+  } = useGlobalContext();
+
   const bottomNavItems = useMemo(
     () => [
       {
@@ -40,36 +38,27 @@ const BottomNavigation = () => {
   );
 
   return (
-    <BottomNavigationContainer>
-      <BottomNavigationBody>
-        {bottomNavItems.map((item, i) => (
-          <FlexItem
-            className="text-center pointer h-100"
-            size={(100 / bottomNavItems.length).toString()}
-            key={i}
-          >
-            <Link to={item.url} style={{ textDecoration: 'none' }}>
-              {/* <Flex flexDirection='column' alignItems='center'> */}
-              {/* <FlexItem size='25'> */}
-              {/* </FlexItem> */}
+    <nav className={`fixed-bottom w-100 px-3 px-md-5 px-xxl-6 pb-3`}>
+      <div className="bg-lotion px-4 py-3 rounded-4 shadow">
+        <div className="row justify-content-between">
+          {bottomNavItems.map((item, i) => (
+            <Link
+              to={item.url}
+              className="col-3 text-center text-decoration-none link-dark-charcoal"
+              key={i}
+            >
               <div
-                style={{ width: '32px', height: '32px' }}
-                className="d-block mx-auto"
+                style={{ width: width >= 768 ? '25%' : '40%' }}
+                className="mx-auto"
               >
-                <img className="w-100 h-auto" src={item.icon} />
+                <img className="img-fluid" src={item.icon} alt={item.title} />
               </div>
-              <Span
-                variant={ColorThemeEnum.darkCharcoal}
-                weight={FontWeightEnum.bold}
-              >
-                {item.title}
-              </Span>
-              {/* </Flex> */}
+              <div className="fw-semibold">{item.title}</div>
             </Link>
-          </FlexItem>
-        ))}
-      </BottomNavigationBody>
-    </BottomNavigationContainer>
+          ))}
+        </div>
+      </div>
+    </nav>
   );
 };
 

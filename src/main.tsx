@@ -6,21 +6,22 @@ import { Theme, GlobalStyle } from './styles';
 import { Routes as AppRoutes } from '@routes/index';
 import Loader from '@components/molecules/Loader';
 import { GlobalContextWrapper } from '@contexts/Global.context';
+import '@styles/global.style.scss';
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
       <GlobalContextWrapper>
-      <BrowserRouter>
-        <Suspense fallback={<Loader />}>
-          <Routes>
-            {AppRoutes.map((r, i) => {
-              return <Route path={r.path} element={<r.element />} key={i} />;
-            })}
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              {AppRoutes.map((r, i) => {
+                return <Route path={r.path} element={<r.element />} key={i} />;
+              })}
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
       </GlobalContextWrapper>
     </ThemeProvider>
   </React.StrictMode>,

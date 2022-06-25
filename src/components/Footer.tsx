@@ -1,16 +1,10 @@
 import { FC, useMemo } from 'react';
-import { ColorThemeEnum, FontWeightEnum } from '@styles/Theme';
-import { Flex, FlexItem } from './atoms/Flex';
-import { Paragraph } from './atoms/Paragraph';
-import { Span } from './atoms/Span';
 import Logo from '@assets/images/logo.png';
 import Instagram from '@assets/images/instagram.png';
 import Facebook from '@assets/images/facebook.png';
 import Twitter from '@assets/images/twitter.png';
 import Youtube from '@assets/images/youtube.png';
-import { FooterList, FooterSection, FooterWrapper } from './Footer.style';
 import { useGlobalContext } from '@contexts/Global.context';
-import Container from './atoms/Container';
 
 const Footer: FC = () => {
   const {
@@ -36,167 +30,111 @@ const Footer: FC = () => {
     []
   );
 
+  const logoItems = useMemo(
+    () => [
+      {
+        src: Instagram,
+        link: 'https://instagram.com/belifeful.id',
+        alt: 'instagram',
+      },
+      {
+        src: Youtube,
+        link: 'https://www.youtube.com/channel/UCMXqirB5Ml_adGH9xTHwkig',
+        alt: 'youtube',
+      },
+      {
+        src: Facebook,
+        link: 'https://facebook.com/belifeful.id',
+        alt: 'facebook',
+      },
+      {
+        src: Twitter,
+        link: 'https://twitter.com/belifeful.id',
+        alt: 'twitter',
+      },
+    ],
+    []
+  );
+
   return (
-    <FooterWrapper>
-      <FooterSection
-        paddingX={width <= 992 ? '1.5' : '6.25'}
-        variant={ColorThemeEnum.antiFlashWhite}
-      >
-        <Container className="d-flex">
-          <FlexItem
-            size={width <= 992 ? '50' : '25'}
-            className={width <= 992 ? 'text-center' : undefined}
-          >
-            <img
-              className={`h-auto w-${width <= 1080 ? '75' : '50'}`}
-              src={Logo}
-            />
-          </FlexItem>
-          {width <= 992 && (
-            <FlexItem size="50">
-              <Paragraph weight={FontWeightEnum.bolder} fs="5">
-                {footerItems[0].title}
-              </Paragraph>
-              {footerItems[0].desc}
-            </FlexItem>
-          )}
-          {width > 992 && (
-            <FlexItem size="75">
-              <Flex justifyContent="space-between">
-                {footerItems.map((item, i) => (
-                  <FlexItem key={i} size={i === 0 ? '30' : '20'}>
-                    <Paragraph weight={FontWeightEnum.bolder} fs="5">
-                      {item.title}
-                    </Paragraph>
-                    {item.desc && (
-                      <Span weight={FontWeightEnum.semi}>{item.desc}</Span>
-                    )}
-                    {item.list &&
-                      item.list.map((desc, j) => (
-                        <FooterList key={j}>
-                          <li
-                            style={{
-                              marginBottom:
-                                item.list.length + 1 === j ? '0' : '0.875rem',
-                            }}
-                          >
-                            <Span weight={FontWeightEnum.semi}>{desc}</Span>
-                          </li>
-                        </FooterList>
-                      ))}
-                  </FlexItem>
-                ))}
-              </Flex>
-            </FlexItem>
-          )}
-        </Container>
-      </FooterSection>
-      {width <= 992 && (
-        <>
-          <FooterSection
-            paddingX={width <= 992 ? '1.5' : '6.25'}
-            variant={ColorThemeEnum.antiFlashWhite}
-            paddingTop="0"
-          >
-            <Flex justifyContent="center" block>
-              {footerItems[1].list!.map((desc, i) => (
-                <Span
-                  key={i}
-                  style={{
-                    paddingLeft: i === 0 ? '' : '0.5rem',
-                    paddingRight:
-                      footerItems[1].list!.length === i + 1 ? '' : '0.5rem',
-                    borderRight:
-                      footerItems[1].list!.length === i + 1
-                        ? ''
-                        : '1px solid gray',
-                  }}
-                >
-                  {desc}
-                </Span>
-              ))}
-            </Flex>
-          </FooterSection>
-          <FooterSection
-            paddingX={width <= 992 ? '1.5' : '6.25'}
-            variant={ColorThemeEnum.antiFlashWhite}
-            paddingTop="0"
-          >
-            <Flex justifyContent="center" block>
-              {footerItems[2].list!.map((desc, i) => (
-                <Span
-                  key={i}
-                  style={{
-                    paddingLeft: i === 0 ? '' : '0.5rem',
-                    paddingRight:
-                      footerItems[2].list!.length === i + 1 ? '' : '0.5rem',
-                    borderRight:
-                      footerItems[2].list!.length === i + 1
-                        ? ''
-                        : '1px solid gray',
-                  }}
-                >
-                  {desc}
-                </Span>
-              ))}
-            </Flex>
-          </FooterSection>
-        </>
-      )}
-      <FooterSection
-        variant={ColorThemeEnum.gold}
-        paddingX={width <= 992 ? '1.5' : '6.25'}
-      >
-        <div className="w-100">
-          <Container className="d-flex align-items-center">
-            {width > 992 && (
-              <FlexItem>
-                <Span weight={FontWeightEnum.semi}>{copyright}</Span>
-              </FlexItem>
-            )}
-            <FlexItem>
-              <Flex justifyContent={width <= 992 ? 'space-evenly' : 'end'}>
+    <>
+      <div className="bg-anti-flash">
+        <div className="container px-4 px-lg-0 py-4">
+          <div className="row mb-3 justify-content-between align-items-sm-center">
+            <div className="col-lg-2 col-md-4 col-6 align-self-center">
+              <img className="img-fluid" src={Logo} alt="" />
+            </div>
+            {footerItems.map((content, i) => (
+              <div
+                key={i}
+                className={`col-lg-2 col-6 d-lg-block${i > 0 ? ' d-none' : ''}`}
+              >
+                <p className="fw-bold mb-1 mb-lg-3 fs-4">{content.title}</p>
+                {content.desc && (
+                  <span className="fw-semibold">{content.desc}</span>
+                )}
+                {content.list && (
+                  <ul className="list-unstyled">
+                    {content.list.map((item, j) => (
+                      <li className="mb-3" key={j}>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+          {width < 992 &&
+            footerItems.map((content, i) => {
+              if (i === 0) {
+                return null;
+              }
+
+              return (
+                <div className="d-flex justify-content-center mb-3" key={i}>
+                  {content.list!.map((desc, j) => (
+                    <span
+                      className={`fs-6 fw-semibold px-2${
+                        j !== content.list!.length - 1
+                          ? ' border-end border-gray'
+                          : ''
+                      }`}
+                      key={j}
+                    >
+                      {desc}
+                    </span>
+                  ))}
+                </div>
+              );
+            })}
+        </div>
+      </div>
+      <div className="bg-gold py-2">
+        <div className="container px-4 px-lg-0">
+          <div className="d-flex justify-content-between align-items-center">
+            <h6 className="d-none d-lg-block fw-semibold mb-0">{copyright}</h6>
+            <div className="d-flex mx-auto mx-lg-0 justify-content-center justify-content-lg-end">
+              {logoItems.map((item, i) => (
                 <a
                   target="_blank"
-                  href="https://www.instagram.com/belifeful.id"
-                  style={{ width: '35px', height: '35px' }}
+                  href={item.link}
+                  className={`col-1${
+                    i !== logoItems.length - 1 ? ' me-3' : ''
+                  }`}
+                  key={i}
                 >
-                  <img className={`w-100 h-auto`} src={Instagram} />
+                  <img src={item.src} alt={item.alt} className="img-fluid" />
                 </a>
-                <div
-                  style={{ width: '35px', height: '35px' }}
-                  className={`ml-${width > 992 ? '3' : '0'}`}
-                >
-                  <img className={`w-100 h-auto`} src={Youtube} />
-                </div>
-                <div
-                  style={{ width: '35px', height: '35px' }}
-                  className={`ml-${width > 992 ? '3' : '0'}`}
-                >
-                  <img className={`w-100 h-auto`} src={Facebook} />
-                </div>
-                <div
-                  style={{ width: '35px', height: '35px' }}
-                  className={`ml-${width > 992 ? '3' : '0'}`}
-                >
-                  <img className={`w-100 h-auto`} src={Twitter} />
-                </div>
-              </Flex>
-            </FlexItem>
-          </Container>
+              ))}
+            </div>
+          </div>
         </div>
-      </FooterSection>
-      {width <= 992 && (
-        <FooterSection
-          variant={ColorThemeEnum.antiFlashWhite}
-          paddingX={width <= 992 ? '1.5' : '6.25'}
-          justifyContent="center"
-          style={{ paddingBottom: '7.5rem' }}
-        >
-          <Span weight={FontWeightEnum.semi}>{copyright}</Span>
-        </FooterSection>
-      )}
-    </FooterWrapper>
+      </div>
+      <div className="d-flex d-lg-none bg-anti-flash d-flex pt-4 pb-9 justify-content-center">
+        <h5 className="fw-semibold">{copyright}</h5>
+      </div>
+    </>
   );
 };
 

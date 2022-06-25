@@ -1,101 +1,77 @@
 import { FC } from 'react';
 import EbookImage from '@assets/images/ebook.png';
 import Container from '@components/atoms/Container';
-import BodyContainer from '@components/atoms/BodyContainer';
-import { Flex, FlexItem } from '@components/atoms/Flex';
-import Card from '@components/atoms/Card';
-import { ColorThemeEnum, FontWeightEnum } from '@styles/Theme';
-import { Span } from '@components/atoms/Span';
-import { Paragraph } from '@components/atoms/Paragraph';
-import Input from '@components/atoms/Input';
-import Button from '@components/atoms/Button';
 import { Link } from 'react-router-dom';
 
 const RegisterCTA: FC<{ width: number }> = ({ width }) => {
   return (
-    <div className="w-100 p-relative">
-      <div className="p-absolute w-100 h-100 overflow-hidden">
-        <div className="p-relative h-100">
-          <div
-            className={`p-absolute w-${width > 1400 ? '50' : '75'}`}
-            style={{
-              bottom:
-                width <= 768 ? '-3rem' : width <= 992 ? '-5rem' : '-9rem',
-              left:
-                width <= 768 ? '-6rem' : width <= 992 ? '-13rem' : '-18rem',
-            }}
-          >
-            <img src={EbookImage} className="w-100 h-auto" />
-          </div>
-        </div>
+    <div className="position-relative pb-10 overflow-hidden">
+      <div
+        className={`position-absolute w-${width < 768 ? '100' : '50'}`}
+        style={{
+          bottom: width >= 1200 ? '-15%' : width >= 768 ? '-5%' : '-5%',
+          left: width >= 768 ? '-15%' : '-30%',
+        }}
+      >
+        <img className="w-100 h-auto" src={EbookImage} alt="" />
       </div>
       <Container>
-        <BodyContainer
-          paddingTop={width <= 600 ? '4.5' : ''}
-          justifyContent={width < 1200 ? 'center' : 'end'}
-          style={{ paddingBottom: '11rem' }}
-        >
-          <FlexItem size="80" className="p-relative" style={{ zIndex: '5' }}>
-            <Card className="w-100">
-              <Flex
-                flexDirection={width < 1200 ? 'column' : 'row'}
-                justifyContent="space-between"
-              >
-                <FlexItem
-                  size={width < 1200 ? '100' : '38'}
-                  className={width < 1200 ? 'mb-5' : ''}
-                >
-                  <Paragraph
-                    weight={FontWeightEnum.bold}
-                    variant={ColorThemeEnum.lincolnGreen}
-                    className="mb-5"
-                    fs={width <= 992 ? '4' : '3'}
-                  >
+        <div className="d-flex justify-content-end">
+          <div className="card shadow col-12 col-lg-10 p-5 rounded-5">
+            <div className="card-body">
+              <div className="row flex-column flex-lg-row justify-content-between">
+                <div className="col-12 col-lg-6 mb-5 mb-lg-0">
+                  <h1 className="text-lincoln-green fw-bolder mb-3">
                     Membangun keluarga yang{' '}
-                    <Span variant={ColorThemeEnum.coral}>lebih baik</Span>
-                  </Paragraph>
-                  <Span
-                    weight={FontWeightEnum.bold}
-                    variant={ColorThemeEnum.lincolnGreen}
-                    fs="6"
-                  >
+                    <span className="text-coral">lebih baik</span>
+                  </h1>
+                  <span className="fs-5 text-lincoln-green fw-bold">
                     Yuk kita mulai dengan membuat profil log in kamu
-                  </Span>
-                </FlexItem>
-                <FlexItem size={width < 1200 ? '100' : '48'}>
-                  <Paragraph
-                    className="text-center"
-                    fs="4"
-                    weight={FontWeightEnum.bold}
-                  >
-                    Daftar
-                  </Paragraph>
+                  </span>
+                </div>
+                <div className="col-12 col-lg-6 text-center">
+                  <h2 className="mb-4 fw-bold">Daftar</h2>
                   <form>
-                    <Input className="mb-5" placeholder="Email Address" />
-                    <Button
-                      weight="800"
-                      block
-                      variant={ColorThemeEnum.gold}
-                      className="mb-5"
-                    >
+                    <input
+                      className="form-control mb-4"
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder="Email Address"
+                    />
+                    <button className="btn btn-gold fw-bold w-100">
                       Lanjutkan
-                    </Button>
+                    </button>
                   </form>
-                  <Paragraph
-                    variant={ColorThemeEnum.gray}
-                    className="text-center"
-                    weight={FontWeightEnum.bolder}
-                  >
+                  <div className="my-4">atau daftar dengan</div>
+                  <div className="d-flex justify-content-between mb-4">
+                    <button
+                      className="btn btn-outline-gray"
+                      style={{ width: '48%' }}
+                    >
+                      Google
+                    </button>
+                    <button
+                      className="btn btn-outline-gray"
+                      style={{ width: '48%' }}
+                    >
+                      Facebook
+                    </button>
+                  </div>
+                  <span className="fw-bold text-gray">
                     Sudah punya akun?{' '}
-                    <Link to="/login" style={{ textDecoration: 'none' }}>
-                      <Span variant={ColorThemeEnum.persianGreen}>Masuk</Span>
+                    <Link
+                      to="/login"
+                      className="link-persian-green text-decoration-none"
+                    >
+                      Masuk
                     </Link>
-                  </Paragraph>
-                </FlexItem>
-              </Flex>
-            </Card>
-          </FlexItem>
-        </BodyContainer>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </Container>
     </div>
   );
