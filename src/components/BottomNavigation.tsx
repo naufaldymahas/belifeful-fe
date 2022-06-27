@@ -40,20 +40,21 @@ const BottomNavigation = () => {
   return (
     <nav className={`fixed-bottom w-100 px-3 px-md-5 px-xxl-6 pb-3`}>
       <div className="bg-lotion px-4 py-3 rounded-4 shadow">
-        <div className="row justify-content-between">
+        <div className="d-flex justify-content-between">
           {bottomNavItems.map((item, i) => (
             <Link
               to={item.url}
-              className="col-3 text-center text-decoration-none link-dark-charcoal"
+              style={{ width: 100 / bottomNavItems.length + '%' }}
+              className="text-center text-decoration-none link-dark-charcoal"
               key={i}
             >
               <div
-                style={{ width: width >= 768 ? '25%' : '40%' }}
+                style={{ width: width >= 768 ? '25%' : '30%' }}
                 className="mx-auto"
               >
                 <img className="img-fluid" src={item.icon} alt={item.title} />
               </div>
-              <div className="fw-semibold">{item.title}</div>
+              <span className="fw-semibold fs-6">{item.title}</span>
             </Link>
           ))}
         </div>

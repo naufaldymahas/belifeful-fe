@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import EbookImage from '@assets/images/ebook.png';
-import Container from '@components/atoms/Container';
 import { Link } from 'react-router-dom';
 
 const RegisterCTA: FC<{ width: number }> = ({ width }) => {
@@ -15,7 +14,7 @@ const RegisterCTA: FC<{ width: number }> = ({ width }) => {
       >
         <img className="w-100 h-auto" src={EbookImage} alt="" />
       </div>
-      <Container>
+      <div className="container pt-6 pt-lg-10 px-4 px-lg-0">
         <div className="d-flex justify-content-end">
           <div className="card shadow col-12 col-lg-10 p-5 rounded-5">
             <div className="card-body">
@@ -72,7 +71,7 @@ const RegisterCTA: FC<{ width: number }> = ({ width }) => {
             </div>
           </div>
         </div>
-      </Container>
+      </div>
     </div>
   );
 };
