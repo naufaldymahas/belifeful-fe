@@ -1,4 +1,3 @@
-import Container from '@components/atoms/Container';
 import { FC, useMemo } from 'react';
 
 const Testimonial: FC<{ width: number }> = ({ width }) => {
@@ -18,7 +17,7 @@ const Testimonial: FC<{ width: number }> = ({ width }) => {
     []
   );
   return (
-    <Container>
+    <div className="container-lg mt-6 mt-lg-10 ps-4 pe-0 px-lg-0">
       <div
         className="position-relative overflow-hidden ms-5 me-0 me-lg-5 "
         style={{ zIndex: '2', minHeight: '20rem' }}
@@ -60,7 +59,7 @@ const Testimonial: FC<{ width: number }> = ({ width }) => {
           </div>
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 

@@ -4,6 +4,7 @@ import RegisterCTA from '@components/organisms/Home/RegisterCTA/RegisterCTA';
 import HeroBanner from '@components/organisms/Home/HeroBanner/HeroBanner';
 import ECourseSection from '@components/organisms/Home/ECourseSection/ECourseSection';
 import Testimonial from '@components/organisms/Home/Testimonial/Testimonial';
+import SpeakerSection from '@components/organisms/Home/SpeakerSection/SpeakerSection';
 
 const Home = () => {
   const {
@@ -14,6 +15,7 @@ const Home = () => {
     <DefaultLayout>
       <HeroBanner width={width} />
       <ECourseSection />
+      <SpeakerSection />
       <Testimonial width={width} />
       <RegisterCTA width={width} />
     </DefaultLayout>

@@ -4,10 +4,11 @@ import RatingImage from '@assets/images/rating.png';
 
 const ECourseCard: FC<{ width: string }> = ({ width }) => {
   return (
-    <div className="shadow rounded mx-3 mb-5" style={{ width }}>
+    <div className="shadow rounded-5 mx-3 mb-5" style={{ width }}>
       <div
-        className="rounded-top"
         style={{
+          borderTopLeftRadius: '2rem',
+          borderTopRightRadius: '2rem',
           height: '13.5rem',
           backgroundImage:
             'url("https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")',
