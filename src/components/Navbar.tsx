@@ -35,7 +35,7 @@ const Navbar: FC = () => {
                   Masuk
                 </button>
               </Link>
-              <Link to="/daftar" className="col">
+              <Link to="/register" className="col">
                 <button className="btn btn-gold fw-bold w-100">Daftar</button>
               </Link>
             </div>

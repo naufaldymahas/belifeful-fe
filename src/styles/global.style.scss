@@ -37,6 +37,13 @@ $font-weight-bolder: 800;
 $card-border-color: transparent;
 $box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
 
+$font-sizes: map-merge(
+  $font-sizes,
+  (
+    7: $font-size-base * 0.75,
+  )
+);
+
 $spacers: map-merge(
   (
     0: 0,
@@ -69,3 +76,4 @@ $spacers: map-merge(
 @import '../node_modules/bootstrap/scss/forms';
 @import '../node_modules/bootstrap/scss/type';
 @import '../node_modules/bootstrap/scss/card';
+@import '../node_modules/bootstrap/scss/placeholders';

@@ -1,94 +1,92 @@
-import { Flex } from '@components/atoms/Flex';
 import { FC, ReactNode } from 'react';
 import styled from 'styled-components';
 import Logo from '@assets/images/logo_text.png';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { useGlobalContext } from '@contexts/Global.context';
 
-export const AuthLayoutContainer = styled(Flex)`
-  min-height: 100vh;
-  flex-direction: column;
-
-  @media only screen and (min-width: 992px) {
-    flex-direction: row;
-    position: relative;
-  }
-`;
-
-export const AuthLayoutYellow = styled.div`
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors.gold};
-  display: flex;
-  text-align: left;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2.625rem 10.5% 2.625rem 2rem;
-
-  @media only screen and (min-width: 1024px) {
-    justify-content: space-between;
-    width: 45%;
-  }
-`;
-
-const AuthLayoutWhite = styled.div`
-  width: 100%;
+const AuthLayoutWhite = styled.div<{ location: string }>`
+  position: absolute;
   background-color: ${({ theme }) => theme.colors.lotion};
-  min-height: 100vh;
-  right: 0;
-  border-radius: 3rem 0 0 3rem;
+  padding: 3rem;
+  width: 100%;
+  border-top-right-radius: 3rem;
+  border-top-left-radius: 3rem;
+  height: ${({location}) => location === '/login' ? '50' : '65'}%;
+  bottom: 0;
 
-  @media only screen and (min-width: 992px) {
-    position: absolute;
+  @media only screen and (min-width: 768px) {
+    
   }
 
   @media only screen and (min-width: 992px) {
+    height: 100%;
     width: 65.5%;
+    top: unset;
+    right: 0;
+    border-top-right-radius: unset;
+    border-top-left-radius: 3rem;
+    border-bottom-left-radius: 3rem;
   }
-`;
-
-const AuthLayoutWhiteBody = styled(Flex)`
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: inherit;
-  padding-top: 2.625rem;
-  padding-bottom: 2.625rem;
 `;
 
 type AuthProps = {
   yellowComponent: ReactNode;
   whiteComponent: ReactNode;
+  whiteFooterComponent?: ReactNode;
 };
 
 export const AuthLayout: FC<AuthProps> = ({
   whiteComponent,
   yellowComponent,
+  whiteFooterComponent,
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const {
     state: { width },
   } = useGlobalContext();
 
   return (
-    <AuthLayoutContainer>
-      <AuthLayoutYellow>{yellowComponent}</AuthLayoutYellow>
-      <AuthLayoutWhite>
-        <AuthLayoutWhiteBody>
+    <div
+      className="d-flex flex-column flex-lg-row position-relative"
+      style={{
+        minHeight: '100vh',
+      }}
+    >
+      <div
+        style={{
+          width: width >= 992 ? '40%' : '100%',
+          paddingRight: width >= 992 ? '5.5%' : '0',
+          height: location.pathname === '/login' ? '115vh' : '115vh',
+        }}
+        className="bg-gold pt-5 py-lg-5 ps-lg-4"
+      >
+        {yellowComponent}
+      </div>
+      <AuthLayoutWhite location={location.pathname}>
+        <div className={`d-flex w-100 flex-column justify-content-center align-items-center h-${width >= 992 ? '100' : 'auto'}`}>
           <div
             onClick={() => {
               navigate('/');
             }}
             style={{
               width: width <= 600 ? '35%' : '20%',
-              marginBottom: '3.25rem',
+              cursor: 'pointer',
             }}
-            className='pointer'
+            className="mb-5 d-none d-lg-block"
           >
-            <img className='w-100' src={Logo} />
+            <img className="w-100" src={Logo} />
           </div>
-          {whiteComponent}
-        </AuthLayoutWhiteBody>
+          <div
+            className={`col-12 col-md-8 p-0 py-lg-5 px-lg-4 rounded-5${
+              width >= 992 ? ' shadow' : ''
+            }`}
+          >
+            {whiteComponent}
+          </div>
+          {whiteFooterComponent && whiteFooterComponent}
+        </div>
       </AuthLayoutWhite>
-    </AuthLayoutContainer>
+    </div>
   );
 };

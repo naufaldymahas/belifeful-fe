@@ -1,60 +1,25 @@
-import Card from '@components/atoms/Card';
-import { Flex, FlexItem } from '@components/atoms/Flex';
-import { Paragraph } from '@components/atoms/Paragraph';
-import { Span } from '@components/atoms/Span';
-import { ColorThemeEnum, FontWeightEnum } from '@styles/Theme';
-import Input from '@components/atoms/Input';
-import Button from '@components/atoms/Button';
 import { useMemo } from 'react';
 import { RegisterActionType, useRegisterContext } from '@contexts/Register';
 
 export const RegisterYellowStep3 = () => {
   return (
     <>
-      <div style={{ paddingRight: '4.125rem' }}>
-        <Paragraph
-          fs='4'
-          weight={FontWeightEnum.bolder}
-          variant={ColorThemeEnum.lincolnGreen}
-        >
-          Hi, Kita kenalan yuk
-        </Paragraph>
-        <Paragraph
-          fs='6'
-          weight={FontWeightEnum.bold}
-          variant={ColorThemeEnum.lincolnGreen}
-        >
+      <div className="px-5 ps-lg-0 text-lincoln-green">
+        <h2 className="fw-bolder mb-4">Hi, Kita kenalan yuk</h2>
+        <span className="fw-bold fs-5">
           Isi informasi di samping agar kami bisa mengenalmu
-        </Paragraph>
+        </span>
       </div>
-      <Span weight={FontWeightEnum.semi} variant={ColorThemeEnum.lincolnGreen}>
-        Pahami{' '}
-        <Span
-          weight={FontWeightEnum.semi}
-          variant={ColorThemeEnum.persianGreen}
-        >
-          Kebijakan Privasi
-        </Span>{' '}
+      <span className="px-5 ps-lg-0 text-lincoln-green d-lg-block d-none">
+        Pahami <span className="text-persian-green">Kebijakan Privacy</span>{' '}
         kami sebelum mendaftar
-      </Span>
+      </span>
     </>
   );
 };
 
 export const RegisterWhiteStep3 = () => {
   const { dispatch } = useRegisterContext();
-
-  const handleKeyDown = useMemo(
-    () => (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (
-        !(e.key.match(/[0-9]/g) || e.key === 'Delete' || e.key === 'Backspace')
-      ) {
-        e.preventDefault();
-        return;
-      }
-    },
-    []
-  );
 
   const submitHandler = useMemo(
     () => (e: any) => {
@@ -82,41 +47,37 @@ export const RegisterWhiteStep3 = () => {
 
   return (
     <>
-      <Card style={{ marginBottom: '3.25rem' }}>
-        <Paragraph
-          fs='5'
-          weight={FontWeightEnum.bold}
-          style={{ marginBottom: '1.375rem' }}
-        >
-          Daftar
-        </Paragraph>
-        <form onSubmit={submitHandler}>
-          <Flex
-            justifyContent='space-between'
-            className='mb-5'
-          >
-            <FlexItem size='48'>
-              <Input placeholder='Nama Depan' />
-            </FlexItem>
-            <FlexItem size='48'>
-              <Input placeholder='Nama Belakang' />
-            </FlexItem>
-          </Flex>
-          <Input
-            placeholder='Nomor Handphone'
-            className='mb-5'
-            onKeyDown={handleKeyDown}
-          />
-          <Button
-            type='submit'
-            variant={ColorThemeEnum.gold}
-            weight='800'
-            block
-          >
-            Lanjutkan
-          </Button>
-        </form>
-      </Card>
+      <h2 className="text-center fw-bolder mb-5">Daftar</h2>
+      <form onSubmit={submitHandler}>
+        <div className="row mb-4">
+          <div className="col-6">
+            <input
+              type="text"
+              name="firstName"
+              id="firstName"
+              className="form-control"
+              placeholder="Nama Depan"
+            />
+          </div>
+          <div className="col-6">
+            <input
+              type="text"
+              name="lastName"
+              id="lastName"
+              className="form-control"
+              placeholder="Nama Belakang"
+            />
+          </div>
+        </div>
+        <input
+          type="text"
+          name="handphone"
+          id="handphone"
+          className="form-control mb-4"
+          placeholder="Nomor Handphone"
+        />
+        <button className="w-100 btn btn-gold fw-bold">Lanjutkan</button>
+      </form>
     </>
   );
 };

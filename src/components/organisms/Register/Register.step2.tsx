@@ -1,45 +1,23 @@
-import Card from '@components/atoms/Card';
-import { Flex } from '@components/atoms/Flex';
-import { Paragraph } from '@components/atoms/Paragraph';
-import { Span } from '@components/atoms/Span';
-import { ColorThemeEnum, FontWeightEnum } from '@styles/Theme';
-import { RegisterCardStep2 } from './Register.style';
 import MailIcon from '@assets/images/mail_icon.png';
-import { RegisterOTPForm, RegisterOTPInput } from './Register.step2.style';
 import { RegisterActionType, useRegisterContext } from '@contexts/Register';
 import { useEffect, useMemo, useState } from 'react';
-import CorrectIcon from '@assets/images/correct_icon.png';
-import WrongIcon from '@assets/images/wrong_icon.png';
+import { useGlobalContext } from '@contexts/Global.context';
 
 export const RegisterYellowStep2 = () => {
   return (
     <>
-      <div style={{ paddingRight: '4.125rem' }}>
-        <Paragraph
-          fs="4"
-          weight={FontWeightEnum.bolder}
-          variant={ColorThemeEnum.lincolnGreen}
-        >
+      <div className="px-5 ps-lg-0 text-lincoln-green">
+        <h2 className="fw-bolder mb-4">
           Verifikasi E-mail demi keamanan akun kamu
-        </Paragraph>
-        <Paragraph
-          fs="6"
-          weight={FontWeightEnum.bold}
-          variant={ColorThemeEnum.lincolnGreen}
-        >
-          Pastikan email yang kamu gunakan aktif
-        </Paragraph>
+        </h2>
+        <span className="fw-bold fs-5">
+          Pastikan email atau nomor telepon yang digunakan aktif
+        </span>
       </div>
-      <Span weight={FontWeightEnum.semi} variant={ColorThemeEnum.lincolnGreen}>
-        Pahami{' '}
-        <Span
-          weight={FontWeightEnum.semi}
-          variant={ColorThemeEnum.persianGreen}
-        >
-          Kebijakan Privasi
-        </Span>{' '}
+      <span className="px-5 ps-lg-0 text-lincoln-green d-lg-block d-none">
+        Pahami <span className="text-persian-green">Kebijakan Privacy</span>{' '}
         kami sebelum mendaftar
-      </Span>
+      </span>
     </>
   );
 };
@@ -49,50 +27,43 @@ export const RegisterWhiteStep2a = () => {
 
   return (
     <>
-      <Card style={{ marginBottom: '3.25rem' }}>
-        <Paragraph
-          fs="5"
-          weight={FontWeightEnum.bold}
-          style={{ marginBottom: '1.375rem' }}
-        >
-          Pilih metode verifikasi
-        </Paragraph>
-        <RegisterCardStep2
-          onClick={() => {
-            dispatch({
-              type: RegisterActionType.SET_STEP,
-              payload: { step: '2b' },
-            });
-          }}
-        >
-          <Flex flexDirection="column">
-            <Span weight={FontWeightEnum.bold}>E-mail ke</Span>
-            <Span weight={FontWeightEnum.semi}>{state.email}</Span>
-          </Flex>
-          <img src={MailIcon} />
-        </RegisterCardStep2>
-      </Card>
-      <Span
-        weight={FontWeightEnum.bold}
-        variant={ColorThemeEnum.persianGreen}
-        className="pointer"
-        onClick={() =>
+      <h2 className="text-center fw-bolder mb-5">Pilih metode verifikasi</h2>
+      <div
+        className="shadow p-3 d-flex rounded-4 justify-content-between align-items-center"
+        style={{
+          cursor: 'pointer',
+        }}
+        onClick={() => {
           dispatch({
             type: RegisterActionType.SET_STEP,
-            payload: { step: '1' },
-          })
-        }
+            payload: {
+              step: '2b',
+            },
+          });
+        }}
       >
-        Ubah E-mail saya
-      </Span>
+        <div>
+          <p className="mb-0 fw-semibold">E-mail ke</p>
+          <span>{state.email}</span>
+        </div>
+        <div
+          style={{ height: '1.25rem', width: '1.25rem' }}
+          className="d-flex align-items-center"
+        >
+          <img src={MailIcon} alt="mail" className="img-fluid" />
+        </div>
+      </div>
     </>
   );
 };
 
 export const RegisterWhiteStep2b = () => {
+  const {
+    state: { width },
+  } = useGlobalContext();
   const { state, dispatch } = useRegisterContext();
+  const [isCorrect, setIsCorrect] = useState(-1);
   const [count, setCount] = useState(30);
-  const [isFailed, setIsFailed] = useState(0);
 
   const handleKeyDown = useMemo(
     () => (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -122,20 +93,6 @@ export const RegisterWhiteStep2b = () => {
     []
   );
 
-  const changeHandler = useMemo(
-    () => (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = [...state.otp];
-      newValue[e.target.tabIndex - 1] = e.target.value;
-      dispatch({
-        type: RegisterActionType.SET_OTP,
-        payload: {
-          otp: newValue,
-        },
-      });
-    },
-    [state.otp]
-  );
-
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (count > 0) {
@@ -145,155 +102,109 @@ export const RegisterWhiteStep2b = () => {
     }
 
     return () => clearTimeout(timer);
-  });
+  }, [count]);
 
   useEffect(() => {
-    let isDone = true;
-    for (const otp of state.otp) {
-      if (!otp) {
-        isDone = false;
-        break;
+    let timer: NodeJS.Timeout;
+    const otp = state.otp.join('');
+    if (otp.length === 6) {
+      if (otp === '123456') {
+        setIsCorrect(1);
+        timer = setTimeout(() => {
+          dispatch({
+            type: RegisterActionType.SET_STEP,
+            payload: {
+              step: '3',
+            },
+          });
+        }, 1000);
+      } else {
+        setIsCorrect(0);
       }
     }
 
-    if (isDone) {
-      dispatch({
-        type: RegisterActionType.SET_STEP,
-        payload: {
-          step: '3',
-        },
-      });
-    }
+    return () => clearTimeout(timer);
   }, [state.otp]);
 
-  if (!state.email) {
-    dispatch({
-      type: RegisterActionType.SET_STEP,
-      payload: { step: '1' },
-    });
-    return null;
-  }
-
   return (
-    <>
-      <Card style={{ marginBottom: '3.25rem' }}>
-        <Paragraph
-          fs="5"
-          weight={FontWeightEnum.bold}
-          style={{ marginBottom: '1.375rem' }}
-        >
-          Masukan Kode Verifikasi
-        </Paragraph>
-        <Paragraph
-          variant={ColorThemeEnum.gray}
-          center
-          weight={FontWeightEnum.bold}
-        >
-          Kode verifikasi telah dikirimkan melalu email ke {state.email}
-        </Paragraph>
-        <RegisterOTPForm>
-          <RegisterOTPInput
+    <div className="text-center">
+      <h3 className="fw-bolder mb-3">Masukan Kode Verifikasi</h3>
+      <p className="text-gray fw-bold">
+        Kode verifikasi telah dikirimkan melalu email ke belifeful@ecourse.com
+      </p>
+      <form className="mb-4 d-flex justify-content-evenly">
+        {state.otp.map((val, i) => (
+          <input
+            key={i}
+            className="text-center border border-3 border-start-0 border-top-0 border-end-0 border-gold bg-lotion fs-3 fw-bold"
+            type="text"
+            pattern="\d*"
             maxLength={1}
             onKeyDown={handleKeyDown}
             onKeyUp={handleKeyUp}
-            tabIndex={1}
-            isFailed={isFailed === 2}
-            value={state.otp[0]}
-            onChange={changeHandler}
+            style={{
+              width: width >= 992 ? '7%' : '12%',
+              borderRadius: '0',
+            }}
+            tabIndex={i + 1}
+            value={val}
+            disabled={isCorrect === 1}
+            onChange={(e) => {
+              const newOTP = [...state.otp];
+              newOTP[i] = e.target.value;
+              dispatch({
+                type: RegisterActionType.SET_OTP,
+                payload: {
+                  otp: newOTP,
+                },
+              });
+            }}
           />
-          <RegisterOTPInput
-            maxLength={1}
-            onKeyDown={handleKeyDown}
-            onKeyUp={handleKeyUp}
-            tabIndex={2}
-            isFailed={isFailed === 2}
-            value={state.otp[1]}
-            onChange={changeHandler}
-          />
-          <RegisterOTPInput
-            maxLength={1}
-            onKeyDown={handleKeyDown}
-            onKeyUp={handleKeyUp}
-            tabIndex={3}
-            isFailed={isFailed === 2}
-            value={state.otp[2]}
-            onChange={changeHandler}
-          />
-          <RegisterOTPInput
-            maxLength={1}
-            onKeyDown={handleKeyDown}
-            onKeyUp={handleKeyUp}
-            tabIndex={4}
-            isFailed={isFailed === 2}
-            value={state.otp[3]}
-            onChange={changeHandler}
-          />
-          <RegisterOTPInput
-            maxLength={1}
-            onKeyDown={handleKeyDown}
-            onKeyUp={handleKeyUp}
-            tabIndex={5}
-            isFailed={isFailed === 2}
-            value={state.otp[4]}
-            onChange={changeHandler}
-          />
-          <RegisterOTPInput
-            maxLength={1}
-            onKeyDown={handleKeyDown}
-            onKeyUp={handleKeyUp}
-            tabIndex={6}
-            isFailed={isFailed === 2}
-            value={state.otp[5]}
-            onChange={changeHandler}
-          />
-        </RegisterOTPForm>
-        {isFailed > 0 && (
-          <Flex
-            block
-            justifyContent="center"
-            style={{ marginBottom: '1.375rem' }}
+        ))}
+      </form>
+      {isCorrect > -1 && (
+        <div className="mb-4 d-flex justify-content-center align-items-center">
+          <span className="fw-bold me-2">
+            {isCorrect ? 'Verifikasi Berhasil' : 'Kode OTP Salah'}
+          </span>
+          <i
+            className={`bi bi-${
+              isCorrect ? 'check-lg' : 'x-circle'
+            } fw-bolder text-${isCorrect ? 'persian-green' : 'coral-red'} fs-5`}
+          ></i>
+        </div>
+      )}
+      {count ? (
+        <span className="fw-bold text-gray">
+          Mohon tunggu dalam{' '}
+          <span className="text-dark-charcoal">{count} detik</span> untuk kirim
+          ulang
+        </span>
+      ) : (
+        <>
+          <p
+            className="fw-bold mb-1 text-persian-green"
+            style={{ cursor: 'pointer' }}
+            onClick={() => setCount(30)}
           >
-            <Span weight={FontWeightEnum.bold} className="mr-1">
-              {isFailed === 1 ? 'Verifikasi berhasil' : 'Kode OTP salah'}
-            </Span>
-            <img src={isFailed === 1 ? CorrectIcon : WrongIcon} />
-          </Flex>
-        )}
-        {count > 0 ? (
-          <Span
-            variant={ColorThemeEnum.gray}
-            weight={FontWeightEnum.bold}
-            center
+            Kirim Ulang
+          </p>
+          <span
+            onClick={() => {
+              dispatch({
+                type: RegisterActionType.SET_OTP,
+                payload: {
+                  step: '1',
+                },
+              });
+            }}
+            style={{ cursor: 'pointer' }}
+            className="fw-bold text-gray"
           >
-            Mohon tunggu dalam{' '}
-            <Span variant={ColorThemeEnum.darkCharcoal}>{count} detik</Span>{' '}
-            untuk kirim ulang
-          </Span>
-        ) : (
-          <>
-            <Paragraph
-              className="mb-1 pointer"
-              weight={FontWeightEnum.bold}
-              variant={ColorThemeEnum.persianGreen}
-            >
-              Kirim Ulang
-            </Paragraph>
-            <Paragraph
-              weight={FontWeightEnum.bold}
-              variant={ColorThemeEnum.gray}
-              className="pointer"
-              onClick={() => {
-                dispatch({
-                  type: RegisterActionType.SET_STEP,
-                  payload: { step: '1' },
-                });
-              }}
-            >
-              Ubah E-mail saya
-            </Paragraph>
-          </>
-        )}
-      </Card>
-    </>
+            Ubah E-mail saya
+          </span>
+        </>
+      )}
+    </div>
   );
 };

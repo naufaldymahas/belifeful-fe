@@ -33,48 +33,52 @@ const SpeakerSection = () => {
   );
 
   return (
-    <div className="container mt-6 mt-lg-10 px-4 px-lg-0">
-      <div className="position-relative mx-5" style={{ zIndex: 2 }}>
+    <div className="position-relative">
+      <div
+        className="container position-absolute w-100 h-100 top-50 start-50 translate-middle px-5 px-lg-0"
+        style={{ zIndex: -1 }}
+      >
         <div
-          className="position-absolute w-100 h-100"
+          className="w-100 h-100"
           style={{
-            background: '#FAD70A',
+            backgroundColor: '#FAD70A',
             mixBlendMode: 'normal',
             opacity: '0.1',
             borderRadius: '48px',
-            zIndex: -1,
           }}
         />
-        <h1 className="text-lincoln-green fw-bolder text-center py-5">
-          Pilih Edukasi Terbaik dari{' '}
-          <span className="text-coral">Pakarnya</span>
-        </h1>
-        <div className="text-nowrap">
-          <div className="d-flex w-100 overflow-auto pb-5">
-            {speakersData.map((speaker, i) => (
-              <div key={i} className="w-100 mx-3">
+      </div>
+      <h1 className="text-lincoln-green fw-bolder text-center py-5">
+        Pilih Edukasi Terbaik dari <span className="text-coral">Pakarnya</span>
+      </h1>
+      <div className="text-nowrap">
+        <div className="d-flex w-100 overflow-auto pb-5">
+          {speakersData.map((speaker, i) => (
+            <div key={i} className="w-100 mx-3">
+              <div
+                className="shadow-sm rounded-4 text-wrap pe-3 d-flex bg-lotion"
+                style={{ width: '34.75rem' }}
+              >
                 <div
-                  className="shadow-sm rounded-4 text-wrap pe-3 d-flex bg-lotion"
-                  style={{ width: '34.75rem' }}
+                  style={{ width: '45%' }}
+                  className="d-flex align-items-end py-5"
                 >
-                  <div style={{ width: '45%' }} className="d-flex align-items-end py-5">
-                    <h5 className="fw-bold text-center mt-auto">
-                      {speaker.speakerName}
-                    </h5>
-                  </div>
-                  <div style={{ width: '55%' }} className="py-5 ps-2">
-                    <h5 className="text-lincoln-green fw-bold">
-                      {speaker.title}
-                    </h5>
-                    <p className="fw-semibold">{speaker.body}</p>
-                    <button className="btn btn-gold btn-lg fw-bold">
-                      Mulai Sekarang
-                    </button>
-                  </div>
+                  <h5 className="fw-bold text-center mt-auto">
+                    {speaker.speakerName}
+                  </h5>
+                </div>
+                <div style={{ width: '55%' }} className="py-5 ps-2">
+                  <h5 className="text-lincoln-green fw-bold">
+                    {speaker.title}
+                  </h5>
+                  <p className="fw-semibold">{speaker.body}</p>
+                  <button className="btn btn-gold btn-lg fw-bold">
+                    Mulai Sekarang
+                  </button>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

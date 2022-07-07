@@ -21,12 +21,12 @@ const BottomNavigation = () => {
       {
         title: 'E-Course',
         icon: ECourseIcon,
-        url: '/',
+        url: '/ecourse/detail',
       },
       {
         title: 'Keranjang',
         icon: CartIcon,
-        url: '/',
+        url: '/cart',
       },
       {
         title: 'Profile',

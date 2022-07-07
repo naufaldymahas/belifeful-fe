@@ -34,7 +34,7 @@ const HeroBanner: FC<{ width: number }> = ({ width }) => {
             >
               <span className="fw-bold fs-6 me-1">Mulai Sekarang</span>
               <img
-                style={{ width: '16px', height: '16px' }}
+                style={{ width: '1rem', height: '1rem' }}
                 src={PlayIconImage}
               />
             </button>

@@ -7,6 +7,7 @@ import { Routes as AppRoutes } from '@routes/index';
 import Loader from '@components/molecules/Loader';
 import { GlobalContextWrapper } from '@contexts/Global.context';
 import '@styles/global.style.scss';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 ReactDOM.render(
   <React.StrictMode>
