@@ -1,21 +1,21 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Logo from '@assets/images/logo_text.png';
 import { useLocation, useNavigate } from 'react-router';
 import { useGlobalContext } from '@contexts/Global.context';
 
-const AuthLayoutWhite = styled.div<{ location: string }>`
+const AuthLayoutWhite = styled.div<{ location: string; height: number }>`
   position: absolute;
   background-color: ${({ theme }) => theme.colors.lotion};
   padding: 3rem;
   width: 100%;
   border-top-right-radius: 3rem;
   border-top-left-radius: 3rem;
-  height: ${({location}) => location === '/login' ? '50' : '65'}%;
+  height: ${({ location, height }) =>
+    location === '/login' ? '50' : height > 700 ? '65' : '40'}%;
   bottom: 0;
 
   @media only screen and (min-width: 768px) {
-    
   }
 
   @media only screen and (min-width: 992px) {
@@ -43,12 +43,12 @@ export const AuthLayout: FC<AuthProps> = ({
   const navigate = useNavigate();
   const location = useLocation();
   const {
-    state: { width },
+    state: { width, height },
   } = useGlobalContext();
 
   return (
     <div
-      className="d-flex flex-column flex-lg-row position-relative"
+      className='d-flex flex-column flex-lg-row position-relative'
       style={{
         minHeight: '100vh',
       }}
@@ -57,14 +57,18 @@ export const AuthLayout: FC<AuthProps> = ({
         style={{
           width: width >= 992 ? '40%' : '100%',
           paddingRight: width >= 992 ? '5.5%' : '0',
-          height: location.pathname === '/login' ? '115vh' : '115vh',
+          height: '115vh',
         }}
-        className="bg-gold pt-5 py-lg-5 ps-lg-4"
+        className='bg-gold pt-5 py-lg-5 ps-lg-4'
       >
         {yellowComponent}
       </div>
-      <AuthLayoutWhite location={location.pathname}>
-        <div className={`d-flex w-100 flex-column justify-content-center align-items-center h-${width >= 992 ? '100' : 'auto'}`}>
+      <AuthLayoutWhite height={height} location={location.pathname}>
+        <div
+          className={`d-flex w-100 flex-column justify-content-center align-items-center h-${
+            width >= 992 ? '100' : 'auto'
+          }`}
+        >
           <div
             onClick={() => {
               navigate('/');
@@ -73,9 +77,9 @@ export const AuthLayout: FC<AuthProps> = ({
               width: width <= 600 ? '35%' : '20%',
               cursor: 'pointer',
             }}
-            className="mb-5 d-none d-lg-block"
+            className='mb-5 d-none d-lg-block'
           >
-            <img className="w-100" src={Logo} />
+            <img className='w-100' src={Logo} />
           </div>
           <div
             className={`col-12 col-md-8 p-0 py-lg-5 px-lg-4 rounded-5${
