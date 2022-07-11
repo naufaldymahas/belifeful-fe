@@ -6,18 +6,46 @@ import QuizImage from '@assets/images/quiz.png';
 import FileImage from '@assets/images/file.png';
 import ChevronUp from '@assets/images/chevron-up.png';
 import ChevronDownImage from '@assets/images/chevron-down.png';
-import { Fragment, useMemo, useState } from 'react';
+import { Fragment, useCallback, useMemo, useState } from 'react';
 import moment from 'moment';
 import 'moment/dist/locale/id';
 import ChevronDown from '@components/atoms/ChevronDown';
+import ECourseCard from '@components/organisms/ECourse/ECourseCard';
+import {
+  ECourseDetailBenefit,
+  ECourselCarouselButton,
+} from './ECourseDetail.style';
 moment.locale('id');
 
 const ECourseDetail = () => {
+  const carouselCardId = useMemo(() => 'carousel-card', []);
   const {
     state: { width },
   } = useGlobalContext();
   const [curriculumIdx, setCurriculumIdx] = useState(0);
   const [sizeShowReview, setSizeShowReview] = useState(3);
+  const [carouselIdx, setCarouselIdx] = useState(0);
+
+  const carouselHandler = useCallback(
+    (type: 'left' | 'right') => {
+      const carouselCardComponents = document.querySelectorAll(
+        `#${carouselCardId}`
+      );
+      carouselCardComponents.forEach((card: any) => {
+        const currentTransform = parseInt(
+          card.style.transform.substring(11, card.style.transform.indexOf('%'))
+        );
+        if (type === 'right') {
+          setCarouselIdx(carouselIdx + 1);
+          card.style.transform = `translateX(${currentTransform - 100}%)`;
+        } else {
+          card.style.transform = `translateX(${currentTransform + 100}%)`;
+          setCarouselIdx(carouselIdx - 1);
+        }
+      });
+    },
+    [carouselIdx]
+  );
 
   const previewContents = useMemo(
     () => [
@@ -244,6 +272,73 @@ const ECourseDetail = () => {
     []
   );
 
+  const ecourseData = useMemo(
+    () => [
+      {
+        thumbnail:
+          'https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+        title: 'Belajar Menjadi Ayah yang Baik Pada Masa Pandemi',
+        price: {
+          normalPrice: 75000,
+          finalPrice: 150000,
+          percentage: 50,
+        },
+        instructor: {
+          name: 'Rahman Syaidan',
+          position: 'Psikolog Keluarga',
+          personalPicture:
+            'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+        },
+        averageRating: 4.7,
+      },
+      {
+        thumbnail:
+          'https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+        title: 'Belajar Menjadi Ayah yang Baik Pada Masa Pandemi',
+        price: {
+          normalPrice: 75000,
+          finalPrice: 150000,
+          percentage: 50,
+        },
+        instructor: {
+          name: 'Rahman Syaidan',
+          position: 'Psikolog Keluarga',
+          personalPicture:
+            'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+        },
+        averageRating: 4.7,
+      },
+      {
+        thumbnail:
+          'https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+        title: 'Belajar Menjadi Ayah yang Baik Pada Masa Pandemi',
+        price: {
+          normalPrice: 75000,
+          finalPrice: 150000,
+          percentage: 50,
+        },
+        instructor: {
+          name: 'Rahman Syaidan',
+          position: 'Psikolog Keluarga',
+          personalPicture:
+            'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+        },
+        averageRating: 4.7,
+      },
+    ],
+    []
+  );
+
+  const ecourseDetailBenefit = useMemo(
+    () => [
+      'E-Course bisa di akses kapan pun',
+      'Akses selama 1 tahun',
+      'Durasi E-Course 60 menit',
+      'Sertifikat Digital',
+    ],
+    []
+  );
+
   return (
     <DefaultLayout>
       <div className="container pt-10 px-4 px-lg-0">
@@ -295,60 +390,9 @@ const ECourseDetail = () => {
                 <h4 className="fw-bold mb-4">Newborn Care 101</h4>
               </div>
               <div className="border-bottom">
-                <div className="my-4 d-flex align-items-center">
-                  <div
-                    className="me-2"
-                    style={{ width: '24px', height: '24px' }}
-                  >
-                    <img
-                      src={CorrectCheckboxImage}
-                      alt=""
-                      className="img-fluid"
-                    />
-                  </div>
-                  <span className="fw-bold">
-                    E-Course bisa di akses kapan pun
-                  </span>
-                </div>
-                <div className="mb-4 d-flex align-items-center">
-                  <div
-                    className="me-2"
-                    style={{ width: '24px', height: '24px' }}
-                  >
-                    <img
-                      src={CorrectCheckboxImage}
-                      alt=""
-                      className="img-fluid"
-                    />
-                  </div>
-                  <span className="fw-bold">Akses selama 1 tahun</span>
-                </div>
-                <div className="mb-4 d-flex align-items-center">
-                  <div
-                    className="me-2"
-                    style={{ width: '24px', height: '24px' }}
-                  >
-                    <img
-                      src={CorrectCheckboxImage}
-                      alt=""
-                      className="img-fluid"
-                    />
-                  </div>
-                  <span className="fw-bold">Durasi E-Course 60 menit</span>
-                </div>
-                <div className="mb-4 d-flex align-items-center">
-                  <div
-                    className="me-2"
-                    style={{ width: '24px', height: '24px' }}
-                  >
-                    <img
-                      src={CorrectCheckboxImage}
-                      alt=""
-                      className="img-fluid"
-                    />
-                  </div>
-                  <span className="fw-bold">Sertifikat Digital</span>
-                </div>
+                {ecourseDetailBenefit.map((value, i) => (
+                  <ECourseDetailBenefit text={value} key={i} />
+                ))}
               </div>
               <div className="d-flex mt-4 mb-3 justify-content-between">
                 <span>Harga Normal</span>
@@ -391,7 +435,7 @@ const ECourseDetail = () => {
             >
               <div
                 style={{
-                  width: '22.5rem',
+                  width: width <= 768 ? '20rem' : '22.5rem',
                 }}
               >
                 <div
@@ -475,12 +519,23 @@ const ECourseDetail = () => {
         <h4 className="fw-bold my-4">Ulasan</h4>
         <div className="card rounded-4 shadow p-3 mb-5">
           {reviewContents.slice(0, sizeShowReview).map((content, i) => (
-            <Fragment key={i}>
-              <h6 className="text-persian-green fw-semibold">{content.name}</h6>
-              <span className="fs-7 mb-3">{content.createdAt}</span>
-              <p className="mb-3">{content.review}</p>
-              <hr className="text-gray opacity-75" />
-            </Fragment>
+            <div key={i} className="d-flex">
+              <div className="me-2" style={{ width: '15%' }}>
+                <img
+                  src="https://ui-avatars.com/api/?name=rahman&background=random&length=1"
+                  alt={content.name}
+                  className="img-fluid rounded-circle"
+                />
+              </div>
+              <div>
+                <h6 className="text-persian-green fw-semibold">
+                  {content.name}
+                </h6>
+                <span className="fs-7 mb-3">{content.createdAt}</span>
+                <p className="mb-3">{content.review}</p>
+                <hr className="text-gray opacity-75" />
+              </div>
+            </div>
           ))}
           {sizeShowReview < reviewContents.length ? (
             <div className="d-flex">
@@ -514,9 +569,69 @@ const ECourseDetail = () => {
           <div
             className="w-100 placeholder rounded"
             style={{
-              height: '12rem',
+              height: width >= 992 ? '12rem' : '10rem',
             }}
           />
+        </div>
+        <h4
+          className={`fw-bold text-${width >= 992 ? 'start' : 'center'} my-4`}
+        >
+          Cek ini juga yuk!
+        </h4>
+        <div
+          className={`position-relative mb-5${
+            width >= 992 ? '' : ' overflow-hidden'
+          }`}
+          style={{ height: '80vh', zIndex: '4' }}
+        >
+          <div
+            className="position-absolute top-50 start-50 translate-middle w-100 d-lg-none d-block"
+            style={{ zIndex: '3' }}
+          >
+            <div className="d-flex justify-content-between w-100">
+              <ECourselCarouselButton onClick={() => carouselHandler('left')}>
+                <i className="bi bi-chevron-left"></i>
+              </ECourselCarouselButton>
+              <ECourselCarouselButton onClick={() => carouselHandler('right')}>
+                <i className="bi bi-chevron-right"></i>
+              </ECourselCarouselButton>
+            </div>
+          </div>
+          <div
+            className={`d-flex justify-content-lg-between w-100 h-${
+              width >= 992 ? 'auto' : '100'
+            }`}
+          >
+            {ecourseData.map((ecourse, i) => (
+              <Fragment key={i}>
+                {width >= 992 ? (
+                  <ECourseCard margin="mx-0" width="32%" data={ecourse} />
+                ) : (
+                  <div
+                    id={carouselCardId}
+                    className={`w-100 px-3 px-lg-0${
+                      width >= 992 ? '' : ' position-absolute'
+                    }`}
+                    style={
+                      width >= 992
+                        ? {}
+                        : {
+                            transform: `translateX(${i * 100}%)`,
+                            zIndex: '2',
+                            transition: 'all 0.5s ease-in-out',
+                          }
+                    }
+                  >
+                    <ECourseCard
+                      margin={'mx-0'}
+                      width={`${width >= 992 ? '30' : '100'}%`}
+                      data={ecourse}
+                    />
+                  </div>
+                )}
+              </Fragment>
+            ))}
+          </div>
         </div>
       </div>
     </DefaultLayout>

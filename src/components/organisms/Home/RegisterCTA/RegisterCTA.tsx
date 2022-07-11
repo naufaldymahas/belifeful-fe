@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import EbookImage from '@assets/images/ebook.png';
 import { Link } from 'react-router-dom';
+import AuthForm from '@components/organisms/Auth/AuthForm';
 
 const RegisterCTA: FC<{ width: number }> = ({ width }) => {
   return (
@@ -29,43 +30,7 @@ const RegisterCTA: FC<{ width: number }> = ({ width }) => {
                   </span>
                 </div>
                 <div className="col-12 col-lg-6 text-center">
-                  <h2 className="mb-4 fw-bold">Daftar</h2>
-                  <form>
-                    <input
-                      className="form-control mb-4"
-                      type="email"
-                      name="email"
-                      id="email"
-                      placeholder="Email Address"
-                    />
-                    <button className="btn btn-gold fw-bold w-100">
-                      Lanjutkan
-                    </button>
-                  </form>
-                  <div className="my-4">atau daftar dengan</div>
-                  <div className="d-flex justify-content-between mb-4">
-                    <button
-                      className="btn btn-outline-gray"
-                      style={{ width: '48%' }}
-                    >
-                      Google
-                    </button>
-                    <button
-                      className="btn btn-outline-gray"
-                      style={{ width: '48%' }}
-                    >
-                      Facebook
-                    </button>
-                  </div>
-                  <span className="fw-bold text-gray">
-                    Sudah punya akun?{' '}
-                    <Link
-                      to="/login"
-                      className="link-persian-green text-decoration-none"
-                    >
-                      Masuk
-                    </Link>
-                  </span>
+                  <AuthForm authType="register" />
                 </div>
               </div>
             </div>

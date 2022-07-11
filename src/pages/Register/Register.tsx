@@ -23,11 +23,8 @@ import {
   RegisterContextWrapper,
   useRegisterContext,
 } from '@contexts/Register';
-import { Paragraph } from '@components/atoms/Paragraph';
-import { ColorThemeEnum, FontWeightEnum } from '@styles/Theme';
 import { useGlobalContext } from '@contexts/Global.context';
 import { Link } from 'react-router-dom';
-import { FC } from 'react';
 
 const Register = () => {
   return (
@@ -78,8 +75,8 @@ const RegisterYellow = () => {
         width >= 992 ? 'start' : 'center'
       }`}
     >
-      <div className='w-100 px-5 px-lg-0 mb-5 d-flex align-items-center justify-content-between'>
-        <span className='text-lincoln-green fw-bold fst-italic'>
+      <div className="w-100 px-5 px-lg-0 mb-5 d-flex align-items-center justify-content-between">
+        <span className="text-lincoln-green fw-bold fst-italic">
           Langkah{' '}
           {step === '2a' || step === '2b'
             ? '2'
@@ -88,8 +85,8 @@ const RegisterYellow = () => {
             : step}{' '}
           dari 4
         </span>
-        <div className='col-3 col-md-2 d-block d-lg-none'>
-          <img src={Logo} alt='' className='img-fluid' />
+        <div className="col-3 col-md-2 d-block d-lg-none">
+          <img src={Logo} alt="" className="img-fluid" />
         </div>
       </div>
       {Component}
@@ -130,20 +127,20 @@ const RegisterWhiteFooter = () => {
     case '1':
       return (
         <>
-          <p className='text-gray text-center mb-0 fw-bold mt-5'>
+          <p className="text-gray text-center mb-0 fw-bold mt-5">
             Sudah punya akun?{' '}
             <Link
-              to='/login'
-              className='link-persian-green text-decoration-none'
+              to="/login"
+              className="link-persian-green text-decoration-none"
             >
               Masuk
             </Link>
           </p>
           <span
-            className='text-center text-lincoln-green d-lg-none d-block fw-semibold w-75 mt-5'
+            className="text-center text-lincoln-green d-lg-none d-block fw-semibold w-75 my-5"
             style={{ bottom: '3rem' }}
           >
-            Pahami <span className='text-persian-green'>Kebijakan Privacy</span>{' '}
+            Pahami <span className="text-persian-green">Kebijakan Privacy</span>{' '}
             kami sebelum mendaftar
           </span>
         </>
@@ -152,7 +149,7 @@ const RegisterWhiteFooter = () => {
       return (
         <>
           <span
-            className='link-persian-green text-center mb-0 fw-bold mt-5'
+            className="link-persian-green text-center mb-0 fw-bold mt-5"
             style={{ cursor: 'pointer' }}
             onClick={() =>
               dispatch({
@@ -166,10 +163,10 @@ const RegisterWhiteFooter = () => {
             Ubah E-mail saya
           </span>
           <span
-            className='text-center text-lincoln-green d-lg-none d-block fw-semibold w-75 mt-5'
+            className="text-center text-lincoln-green d-lg-none d-block fw-semibold w-75 my-5"
             style={{ bottom: '3rem' }}
           >
-            Pahami <span className='text-persian-green'>Kebijakan Privacy</span>{' '}
+            Pahami <span className="text-persian-green">Kebijakan Privacy</span>{' '}
             kami sebelum mendaftar
           </span>
         </>
@@ -178,10 +175,10 @@ const RegisterWhiteFooter = () => {
       return (
         <>
           <span
-            className='text-center text-lincoln-green d-lg-none d-block fw-semibold w-75 mt-5'
+            className="text-center text-lincoln-green d-lg-none d-block fw-semibold w-75 my-5"
             style={{ bottom: '3rem' }}
           >
-            Pahami <span className='text-persian-green'>Kebijakan Privacy</span>{' '}
+            Pahami <span className="text-persian-green">Kebijakan Privacy</span>{' '}
             kami sebelum mendaftar
           </span>
         </>
@@ -190,10 +187,10 @@ const RegisterWhiteFooter = () => {
       return (
         <>
           <span
-            className='text-center text-lincoln-green d-lg-none d-block fw-semibold w-75 mt-5'
+            className="text-center text-lincoln-green d-lg-none d-block fw-semibold w-75 my-5"
             style={{ bottom: '3rem' }}
           >
-            Pahami <span className='text-persian-green'>Kebijakan Privacy</span>{' '}
+            Pahami <span className="text-persian-green">Kebijakan Privacy</span>{' '}
             kami sebelum mendaftar
           </span>
         </>
@@ -202,12 +199,12 @@ const RegisterWhiteFooter = () => {
       return (
         <>
           <span
-            className='text-center text-lincoln-green d-lg-none d-block fw-semibold w-75 mt-5'
+            className="text-center text-lincoln-green d-lg-none d-block fw-semibold w-75 my-5"
             style={{ bottom: '3rem' }}
           >
             Dengan mendaftar, saya setuju bahwa Belifeful akan menggunakan data
             saya seperti dinyatakan pada{' '}
-            <span className='text-persian-green'>Kebijakan Privacy</span>{' '}
+            <span className="text-persian-green">Kebijakan Privacy</span>{' '}
           </span>
         </>
       );
@@ -215,7 +212,7 @@ const RegisterWhiteFooter = () => {
       return (
         <>
           <span
-            className='text-green text-center mb-0 fw-bold mt-5'
+            className="text-green text-center mb-0 fw-bold mt-5"
             style={{ cursor: 'pointer' }}
             onClick={() =>
               dispatch({
@@ -228,37 +225,37 @@ const RegisterWhiteFooter = () => {
           >
             Kamu akan dialihkan ke halaman Homepage Jika halaman tidak berubah
             klik{' '}
-            <Link to='/' className='link-persian-green'>
+            <Link to="/" className="link-persian-green">
               redirect
             </Link>
           </span>
           <span
-            className='text-center text-lincoln-green d-lg-none d-block position-absolute fw-semibold w-50'
+            className="text-center text-lincoln-green d-lg-none d-block fw-semibold w-75 my-5"
             style={{ bottom: '3rem' }}
           >
             Dengan mendaftar, saya setuju bahwa Belifeful akan menggunakan data
             saya seperti dinyatakan pada{' '}
-            <span className='text-persian-green'>Kebijakan Privacy</span>{' '}
+            <span className="text-persian-green">Kebijakan Privacy</span>{' '}
           </span>
         </>
       );
     default:
       return (
         <>
-          <p className='text-gray text-center mb-0 fw-bold mt-5'>
+          <p className="text-gray text-center mb-0 fw-bold mt-5">
             Sudah punya akun?{' '}
             <Link
-              to='/login'
-              className='link-persian-green text-decoration-none'
+              to="/login"
+              className="link-persian-green text-decoration-none"
             >
               Masuk
             </Link>
           </p>
           <span
-            className='text-center text-lincoln-green d-lg-none d-block position-absolute fw-semibold w-50'
+            className="text-center text-lincoln-green d-lg-none d-block position-absolute fw-semibold w-50"
             style={{ bottom: '3rem' }}
           >
-            Pahami <span className='text-persian-green'>Kebijakan Privacy</span>{' '}
+            Pahami <span className="text-persian-green">Kebijakan Privacy</span>{' '}
             kami sebelum mendaftar
           </span>
         </>

@@ -35,7 +35,7 @@ const Login = () => {
         }
         whiteComponent={<LoginWhite />}
         whiteFooterComponent={
-          <p className="text-gray text-center mb-0 fw-bold mt-5">
+          <p className="text-gray text-center mb-5 fw-bold mt-5">
             Belum punya akun?{' '}
             <Link
               to="/register"

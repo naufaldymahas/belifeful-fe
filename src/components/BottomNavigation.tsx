@@ -54,7 +54,9 @@ const BottomNavigation = () => {
               >
                 <img className="img-fluid" src={item.icon} alt={item.title} />
               </div>
-              <span className="fw-semibold fs-6">{item.title}</span>
+              <span className={`fw-semibold fs-${width <= 420 ? '7' : '6'}`}>
+                {item.title}
+              </span>
             </Link>
           ))}
         </div>

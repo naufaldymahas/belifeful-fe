@@ -24,7 +24,6 @@ export const RegisterYellowStep2 = () => {
 
 export const RegisterWhiteStep2a = () => {
   const { state, dispatch } = useRegisterContext();
-
   return (
     <>
       <h2 className="text-center fw-bolder mb-5">Pilih metode verifikasi</h2>
@@ -130,7 +129,7 @@ export const RegisterWhiteStep2b = () => {
     <div className="text-center">
       <h3 className="fw-bolder mb-3">Masukan Kode Verifikasi</h3>
       <p className="text-gray fw-bold">
-        Kode verifikasi telah dikirimkan melalu email ke belifeful@ecourse.com
+        Kode verifikasi telah dikirimkan melalu email ke {state.email}
       </p>
       <form className="mb-4 d-flex justify-content-evenly">
         {state.otp.map((val, i) => (

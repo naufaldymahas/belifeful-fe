@@ -1,6 +1,6 @@
+import { useGlobalContext } from '@contexts/Global.context';
 import { FC, FormEventHandler } from 'react';
 import { Link } from 'react-router-dom';
-import { useGlobalContext } from '@contexts/Global.context';
 
 type AuthFormProps = {
   authType: 'register' | 'login' | 'login_password';
@@ -8,6 +8,10 @@ type AuthFormProps = {
 };
 
 const AuthForm: FC<AuthFormProps> = ({ authType, children, onSubmit }) => {
+  const {
+    state: { width },
+  } = useGlobalContext();
+
   return (
     <>
       <h2 className="text-center fw-bolder mb-5">
@@ -59,11 +63,11 @@ const AuthForm: FC<AuthFormProps> = ({ authType, children, onSubmit }) => {
         <button className="btn btn-gold fw-bolder w-100">Lanjutkan</button>
       </form>
       <div className="mb-3 text-center text-gray d-flex justify-content-between align-items-center">
-        <hr className="opacity-75 col-3" />
-        <span className="col-6">
+        <hr className={`opacity-75 col-${width < 380 ? '2' : '3'}`} />
+        <span className={`col-${width < 380 ? '8' : '6'}`}>
           atau {authType === 'register' ? 'daftar' : 'masuk'} dengan
         </span>
-        <hr className="opacity-75 col-3" />
+        <hr className={`opacity-75 col-${width < 380 ? '2' : '3'}`} />
       </div>
       <div className="d-flex justify-content-between">
         <button

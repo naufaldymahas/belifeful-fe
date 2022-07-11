@@ -1,44 +1,62 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import RatingImage from '@assets/images/rating.png';
+import { formatRupiah } from '@utils/utils';
 
-const ECourseCard: FC<{ width: string }> = ({ width }) => {
+interface ECourseCardProp {
+  width: string;
+  margin?: string;
+  data: {
+    thumbnail: string;
+    title: string;
+    price: {
+      normalPrice: number;
+      finalPrice: number;
+      percentage: number;
+    };
+    instructor: {
+      name: string;
+      position: string;
+      personalPicture: string;
+    };
+    averageRating: number;
+  };
+}
+
+const ECourseCard: FC<ECourseCardProp> = ({ width, data, margin }) => {
   return (
-    <div className="shadow rounded-5 mx-3 mb-5" style={{ width }}>
+    <div
+      className={`shadow rounded-5 ${margin ? margin : 'mx-lg-3'} mb-5`}
+      style={{ width }}
+    >
       <div
         style={{
           borderTopLeftRadius: '2rem',
           borderTopRightRadius: '2rem',
           height: '13.5rem',
-          backgroundImage:
-            'url("https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")',
+          backgroundImage: `url(${data.thumbnail})`,
           backgroundSize: 'cover',
         }}
       ></div>
-      <div className="m-3">
-        <div
-          className="d-flex align-items-center mb-3"
-          style={{ height: '5rem' }}
+      <div className="p-3">
+        <h5
+          className="fw-bolder mb-3"
+          style={{
+            overflow: 'hidden',
+            display: '-webkit-box',
+            WebkitLineClamp: '2',
+            WebkitBoxOrient: 'vertical',
+          }}
         >
-          <h5
-            className="fw-bolder mb-0"
-            style={{
-              overflow: 'hidden',
-              display: '-webkit-box',
-              WebkitLineClamp: '3',
-              WebkitBoxOrient: 'vertical',
-            }}
-          >
-            Belajar Menjadi Ayah yang Baik Pada Masa Pandemi
-          </h5>
-        </div>
+          {data.title}
+        </h5>
         <div className="d-flex">
           <div className="w-25">
             <div
               style={{
                 width: '3rem',
                 height: '3rem',
-                backgroundImage: `url('https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80')`,
+                backgroundImage: `url(${data.instructor.personalPicture})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
                 borderRadius: '50%',
@@ -46,8 +64,8 @@ const ECourseCard: FC<{ width: string }> = ({ width }) => {
             />
           </div>
           <div className="d-flex flex-column">
-            <span>Rahman Syaidan</span>
-            <span>Psikolog Keluarga</span>
+            <span>{data.instructor.name}</span>
+            <span>{data.instructor.position}</span>
           </div>
         </div>
         <div className="d-flex justify-content-between mt-3">
@@ -69,12 +87,14 @@ const ECourseCard: FC<{ width: string }> = ({ width }) => {
                 <img className="img-fluid" src={RatingImage} alt="" />
               </div>
             </div>
-            <span>4.7/5</span>
+            <span>{data.averageRating}/5</span>
           </div>
           <div className="w-50 text-end">
-            <p className="mb-0 fs-4 fw-bolder text-coral">Rp75.000</p>
+            <p className="mb-0 fs-4 fw-bolder text-coral">
+              {formatRupiah(data.price.finalPrice)}
+            </p>
             <span className="fw-semibold text-gray text-decoration-line-through">
-              Rp150.000
+              {formatRupiah(data.price.normalPrice)}
             </span>
           </div>
         </div>
