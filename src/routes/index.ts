@@ -6,6 +6,7 @@ const Login = React.lazy(() => import('@pages/Login/Login'));
 const Cart = React.lazy(() => import('@pages/Cart/Cart'));
 const CartDetail = React.lazy(() => import('@pages/Cart/CartDetail/CartDetail'));
 const ECourseDetail = React.lazy(() => import('@pages/ECourse/ECourseDetail'));
+const PaymentConfirmation = React.lazy(() => import('@pages/Payment-confirmation/PaymentConfirmation'));
 const PageNotFound = React.lazy(() => import('@pages/PageNotFound'));
 
 interface IRoutes {
@@ -27,5 +28,6 @@ export const Routes: IRoutes[] = [
   { path: '/cart', element: Cart },
   { path: '/cart/detail', element: CartDetail },
   { path: '/ecourse/detail', element: ECourseDetail },
+  { path: '/payment-confirmation', element: PaymentConfirmation },
   { path: '*', element: PageNotFound },
 ];
