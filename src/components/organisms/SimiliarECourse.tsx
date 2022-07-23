@@ -4,6 +4,7 @@ import { FC, Fragment, useCallback, useMemo, useState } from 'react';
 import ECourseCard from './ECourse/ECourseCard';
 
 interface SimiliarECourseProps {
+  height?: number;
   ecourseData: {
     thumbnail: string;
     title: string;
@@ -21,7 +22,10 @@ interface SimiliarECourseProps {
   }[];
 }
 
-const SimiliarECourse: FC<SimiliarECourseProps> = ({ ecourseData }) => {
+const SimiliarECourse: FC<SimiliarECourseProps> = ({
+  ecourseData,
+  height = 80,
+}) => {
   const carouselCardId = useMemo(() => 'carousel-card', []);
   const [carouselIdx, setCarouselIdx] = useState(0);
   const {
@@ -58,7 +62,7 @@ const SimiliarECourse: FC<SimiliarECourseProps> = ({ ecourseData }) => {
         className={`position-relative mb-5${
           width >= 992 ? '' : ' overflow-hidden'
         }`}
-        style={{ height: '80vh', zIndex: '4' }}
+        style={{ height: `${height}vh`, zIndex: '4' }}
       >
         <div
           className="position-absolute top-50 start-50 translate-middle w-100 d-lg-none d-block"
@@ -72,7 +76,7 @@ const SimiliarECourse: FC<SimiliarECourseProps> = ({ ecourseData }) => {
             ) : (
               <div />
             )}
-            {carouselIdx < ecourseData.length-1 ? (
+            {carouselIdx < ecourseData.length - 1 ? (
               <ECourselCarouselButton onClick={() => carouselHandler('right')}>
                 <i className="bi bi-chevron-right"></i>
               </ECourselCarouselButton>

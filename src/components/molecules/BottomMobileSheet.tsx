@@ -1,15 +1,28 @@
-import { Dispatch, FC, SetStateAction } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react';
 
 const BottomMobileSheet: FC<{
   title: string;
   shown: boolean;
   setShown: Dispatch<SetStateAction<boolean>>;
 }> = ({ children, title, shown, setShown }) => {
+  const modalRef: any = useRef(null);
   const closeHandler = (e: any) => {
     if (e.target.classList.contains('bg-dark-charcoal')) {
       setShown(false);
     }
   };
+
+  useEffect(() => {
+    if (shown) {
+      modalRef.current.style.bottom = '0';
+      modalRef.current.style.opacity = 1;
+    }
+
+    return () => {
+      modalRef.current.style.bottom = '-10vh';
+      modalRef.current.style.opacity = 0;
+    };
+  }, [shown]);
 
   return (
     <div
@@ -21,8 +34,15 @@ const BottomMobileSheet: FC<{
     >
       <div className="bg-dark-charcoal opacity-75 position-absolute w-100 h-100" />
       <div
-        className="position-fixed w-100 bottom-0 bg-lotion p-3"
-        style={{ borderTopLeftRadius: '1rem', borderTopRightRadius: '1rem' }}
+        ref={modalRef}
+        className="position-fixed w-100 bg-lotion p-3"
+        style={{
+          borderTopLeftRadius: '1rem',
+          borderTopRightRadius: '1rem',
+          bottom: '-10vh',
+          opacity: 0,
+          transition: 'bottom 0.3s, opacity 0.5s'
+        }}
       >
         <div className="mb-3">
           <div className="d-flex align-items-center pb-1">
